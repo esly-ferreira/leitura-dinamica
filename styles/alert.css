@@ -1,0 +1,103 @@
+.alert-stack {
+  position: fixed;
+  top: var(--spacing-6);
+  right: var(--spacing-6);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--spacing-3);
+  pointer-events: none;
+}
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-4);
+  width: 100%;
+  max-width: 400px;
+  padding: var(--spacing-4);
+  padding-right: var(--spacing-8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-3xl);
+  position: relative;
+  pointer-events: auto;
+}
+
+.alert__icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.alert--error .alert__icon {
+  background-image: url("./assets/icons/erro.svg");
+}
+
+.alert--success .alert__icon {
+  background-image: url("./assets/icons/sucess.svg");
+}
+
+.alert--warning .alert__icon {
+  background-image: url("./assets/icons/warning.svg");
+}
+
+.alert__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  flex: 1;
+  min-width: 0;
+}
+
+.alert__title {
+  font-size: var(--font-size-text-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-text-md);
+  color: var(--color-neutral-900);
+  margin: 0;
+}
+
+.alert__text {
+  font-size: var(--font-size-text-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-text-md);
+  color: var(--color-neutral-600);
+  margin: 0;
+}
+
+.alert__action {
+  margin-top: var(--spacing-2);
+  font-size: var(--font-size-text-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-700);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.alert__close {
+  position: absolute;
+  top: var(--spacing-4);
+  right: var(--spacing-4);
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-neutral-400);
+  cursor: pointer;
+  font-size: var(--font-size-text-lg);
+  line-height: 1;
+}
+
+.alert__close:hover {
+  color: var(--color-neutral-600);
+}

@@ -1,0 +1,722 @@
+/*
+  Leitura dinâmica (RSVP) — complementos estruturais ao design system.
+*/
+
+/* Layout — leitor ocupa mais espaço */
+.rsvp__layout {
+  display: grid;
+  grid-template-columns: minmax(16rem, 1fr) minmax(0, 2.2fr);
+  gap: var(--spacing-4);
+  padding: 0 var(--spacing-8) var(--spacing-8);
+  align-items: start;
+}
+
+.rsvp-panel--texto .panel-card__body {
+  gap: var(--spacing-3);
+}
+
+.rsvp-panel--leitura .panel-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  min-height: 36rem;
+}
+
+/* Textarea simples */
+.rsvp-textarea {
+  width: 100%;
+  min-height: 10rem;
+  max-height: 16rem;
+  resize: none;
+}
+
+.rsvp-aviso-local {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: 8px;
+  background: var(--color-neutral-100);
+  border: 1px solid var(--color-neutral-200);
+}
+
+.rsvp-aviso-local .material-symbols-rounded {
+  font-size: 1.1rem;
+  color: var(--color-brand-600);
+  flex-shrink: 0;
+}
+
+.rsvp-partes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.rsvp-partes__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+}
+
+.rsvp-partes__lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  max-height: 14rem;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rsvp-partes__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 8px;
+  background: var(--color-white);
+}
+
+.rsvp-partes__item.is-ativa {
+  border-color: var(--color-brand-400);
+  background: var(--color-brand-50);
+}
+
+.rsvp-partes__info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  min-width: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.rsvp-partes__ordem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: var(--color-neutral-200);
+  font-size: var(--font-size-text-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-700);
+}
+
+.rsvp-partes__item.is-ativa .rsvp-partes__ordem {
+  background: var(--color-brand-500);
+  color: var(--color-white);
+}
+
+.rsvp-partes__titulo {
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-neutral-900);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rsvp-partes__acoes {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.rsvp-partes__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 6px;
+  background: var(--color-white);
+  color: var(--color-neutral-600);
+  cursor: pointer;
+}
+
+.rsvp-partes__btn:hover:not(:disabled) {
+  background: var(--color-neutral-100);
+}
+
+.rsvp-partes__btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.rsvp-partes__btn .material-symbols-rounded {
+  font-size: 1rem;
+}
+
+.rsvp-partes__btn--danger {
+  color: var(--color-red-600);
+}
+
+.rsvp-partes__vazio {
+  margin: 0;
+  padding: var(--spacing-3);
+  text-align: center;
+  border: 1px dashed var(--color-neutral-300);
+  border-radius: 8px;
+}
+
+.rsvp-partes__vazio[hidden] {
+  display: none;
+}
+
+.rsvp-dados {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding-top: var(--spacing-2);
+  border-top: 1px solid var(--color-neutral-200);
+}
+
+.rsvp-dados__acoes {
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+}
+
+.rsvp-texto-acoes--leitura {
+  padding-top: var(--spacing-2);
+  border-top: 1px solid var(--color-neutral-200);
+}
+
+.rsvp-parte-atual {
+  margin: var(--spacing-1) 0 0;
+}
+
+.rsvp-modal[hidden] {
+  display: none;
+}
+
+.rsvp-modal .modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-2);
+}
+
+.rsvp-texto-acoes {
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+}
+
+.rsvp-leitor-slot {
+  flex: 1;
+  display: flex;
+  min-height: 16rem;
+}
+
+.rsvp-leitor-slot .rsvp-leitor {
+  flex: 1;
+}
+
+/* Área de leitura — protagonista */
+.rsvp-leitor {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--spacing-10) var(--spacing-6);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 12px;
+  background: var(--color-neutral-50);
+}
+
+.rsvp-leitor__focal-line {
+  position: absolute;
+  top: 15%;
+  bottom: 15%;
+  left: 50%;
+  width: 2px;
+  background: var(--color-brand-400);
+  opacity: 0.5;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.rsvp-palavra-wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: baseline;
+  width: 100%;
+  overflow: hidden;
+  z-index: 0;
+  font-size: 3.5rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.rsvp-palavra {
+  white-space: nowrap;
+}
+
+.rsvp-palavra:not(.is-empty) {
+  display: contents;
+}
+
+.rsvp-palavra__antes {
+  text-align: right;
+  justify-self: end;
+  grid-column: 1;
+}
+
+.rsvp-palavra__orp {
+  grid-column: 2;
+  text-align: center;
+}
+
+.rsvp-palavra__depois {
+  text-align: left;
+  justify-self: start;
+  grid-column: 3;
+}
+
+.rsvp-palavra__antes,
+.rsvp-palavra__depois {
+  color: var(--color-neutral-900);
+}
+
+.rsvp-palavra__orp {
+  color: var(--color-brand-600);
+}
+
+.rsvp-palavra.is-empty {
+  grid-column: 1 / -1;
+  display: block;
+  text-align: center;
+}
+
+.rsvp-palavra.is-empty::before {
+  content: "Cole um texto para começar a leitura";
+  color: var(--color-neutral-500);
+  font-size: var(--font-size-text-md);
+  font-weight: var(--font-weight-regular);
+  white-space: normal;
+}
+
+.rsvp-palavra.is-empty .rsvp-palavra__antes,
+.rsvp-palavra.is-empty .rsvp-palavra__orp,
+.rsvp-palavra.is-empty .rsvp-palavra__depois {
+  display: none;
+}
+
+/* Progresso */
+.rsvp-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.rsvp-progress__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Barra de temas — acima do leitor, centralizada */
+.rsvp-temas-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex-shrink: 0;
+}
+
+.rsvp-temas-bar__label {
+  font-size: var(--font-size-text-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-neutral-600);
+}
+
+.rsvp-temas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-2);
+}
+
+/* Controles de leitura */
+.rsvp-controles {
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Toolbar compacta — uma linha com wrap */
+.rsvp-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--spacing-3) var(--spacing-4);
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 8px;
+  background: var(--color-neutral-50);
+}
+
+.rsvp-toolbar__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.rsvp-toolbar__item label {
+  margin: 0;
+  font-size: var(--font-size-text-xs);
+  color: var(--color-neutral-600);
+  white-space: nowrap;
+}
+
+.rsvp-toolbar__select {
+  width: auto;
+  min-width: 6.5rem;
+  height: 28px;
+  padding: 0 var(--spacing-2);
+  font-size: var(--font-size-text-xs);
+  box-shadow: none;
+}
+
+.rsvp-toolbar__item--slider {
+  flex: 1 1 8rem;
+  max-width: 11rem;
+}
+
+.rsvp-toolbar__item--wpm {
+  flex: 1 1 100%;
+  max-width: 100%;
+}
+
+.rsvp-slider-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+}
+
+.rsvp-slider-header label {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.rsvp-slider-valor {
+  display: inline-block;
+  min-width: 4.75rem;
+  font-size: var(--font-size-text-xs);
+  font-weight: var(--font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.rsvp-toolbar__tempo {
+  margin: var(--spacing-1) 0 0;
+  white-space: nowrap;
+}
+
+/* Sliders */
+.rsvp-slider {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  accent-color: var(--color-brand-600);
+  cursor: pointer;
+}
+
+.rsvp-slider:hover,
+.rsvp-slider:focus {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Botões de tema — cores do próprio tema */
+.rsvp-tema-btn.md-button-mini {
+  box-shadow: none;
+  filter: none;
+}
+
+.rsvp-tema-btn .material-symbols-rounded {
+  color: inherit;
+}
+
+.rsvp-tema-btn--claro {
+  border-color: var(--color-neutral-300);
+  background: var(--color-neutral-50);
+  color: var(--color-neutral-800);
+}
+
+.rsvp-tema-btn--escuro {
+  border-color: var(--color-neutral-700);
+  background: var(--color-neutral-900);
+  color: var(--color-white);
+}
+
+.rsvp-tema-btn--sepia {
+  border-color: #e8dcc4;
+  background: #f4ecd8;
+  color: #3d2b1f;
+}
+
+.rsvp-tema-btn--alto-contraste {
+  border-color: var(--color-white);
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.rsvp-tema-btn.is-active {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+}
+
+.rsvp-btn-voltar.md-button-mini {
+  border-color: var(--color-neutral-400);
+  background: linear-gradient(180deg, var(--color-white) 0%, var(--color-neutral-100) 100%);
+  color: var(--color-neutral-700);
+}
+
+.rsvp-btn-voltar.md-button-mini .material-symbols-rounded {
+  color: var(--color-neutral-600);
+}
+
+#rsvp-btn-foco.is-active {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+}
+
+/* Temas do leitor */
+.rsvp-leitor.rsvp-tema--claro {
+  background: var(--color-neutral-50);
+  border-color: var(--color-neutral-200);
+}
+
+.rsvp-leitor.rsvp-tema--escuro {
+  background: var(--color-neutral-900);
+  border-color: var(--color-neutral-700);
+}
+
+.rsvp-leitor.rsvp-tema--escuro .rsvp-palavra__antes,
+.rsvp-leitor.rsvp-tema--escuro .rsvp-palavra__depois {
+  color: var(--color-white);
+}
+
+.rsvp-leitor.rsvp-tema--escuro .rsvp-palavra__orp {
+  color: var(--color-brand-300);
+}
+
+.rsvp-leitor.rsvp-tema--escuro .rsvp-leitor__focal-line {
+  background: var(--color-brand-300);
+}
+
+.rsvp-leitor.rsvp-tema--sepia {
+  background: #f4ecd8;
+  border-color: #e8dcc4;
+}
+
+.rsvp-leitor.rsvp-tema--sepia .rsvp-palavra__antes,
+.rsvp-leitor.rsvp-tema--sepia .rsvp-palavra__depois {
+  color: #3d2b1f;
+}
+
+.rsvp-leitor.rsvp-tema--sepia .rsvp-palavra__orp {
+  color: var(--color-orange-700);
+}
+
+.rsvp-leitor.rsvp-tema--sepia .rsvp-leitor__focal-line {
+  background: var(--color-orange-500);
+}
+
+.rsvp-leitor.rsvp-tema--alto-contraste {
+  background: var(--color-black);
+  border-color: var(--color-white);
+}
+
+.rsvp-leitor.rsvp-tema--alto-contraste .rsvp-palavra__antes,
+.rsvp-leitor.rsvp-tema--alto-contraste .rsvp-palavra__depois {
+  color: var(--color-white);
+}
+
+.rsvp-leitor.rsvp-tema--alto-contraste .rsvp-palavra__orp {
+  color: var(--color-yellow-400);
+}
+
+.rsvp-leitor.rsvp-tema--alto-contraste .rsvp-leitor__focal-line {
+  background: var(--color-yellow-400);
+}
+
+.rsvp-leitor.rsvp-fonte--default .rsvp-palavra-wrap {
+  font-family: var(--font-family);
+}
+
+.rsvp-leitor.rsvp-fonte--fonte-1 .rsvp-palavra-wrap {
+  font-family: Georgia, serif;
+}
+
+.rsvp-leitor.rsvp-fonte--fonte-2 .rsvp-palavra-wrap {
+  font-family: "Courier New", monospace;
+}
+
+.rsvp-leitor.rsvp-fonte--fonte-3 .rsvp-palavra-wrap {
+  font-family: system-ui, sans-serif;
+}
+
+@media (max-width: 900px) {
+  .rsvp__layout {
+    grid-template-columns: 1fr;
+    padding: 0 var(--spacing-4) var(--spacing-4);
+  }
+
+  .rsvp-palavra-wrap {
+    font-size: 2.5rem;
+  }
+
+  .rsvp-panel--leitura .panel-card__body {
+    min-height: auto;
+  }
+
+  .rsvp-leitor {
+    min-height: 12rem;
+  }
+}
+
+/* Modo foco — tela cheia com fundo escuro e desfocado */
+.rsvp-foco-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rsvp-foco-overlay[hidden] {
+  display: none;
+}
+
+.rsvp-foco-overlay__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.rsvp-foco-overlay__conteudo {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: var(--spacing-6);
+  box-sizing: border-box;
+}
+
+.rsvp-foco-overlay__sair {
+  position: absolute;
+  top: var(--spacing-4);
+  right: var(--spacing-4);
+  z-index: 3;
+}
+
+.rsvp-foco-overlay__leitor-slot {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 64rem;
+  min-height: 0;
+}
+
+.rsvp-foco-overlay__leitor-slot .rsvp-leitor {
+  flex: 1;
+  width: 100%;
+  min-height: 20rem;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.rsvp-ajustes-slot {
+  display: contents;
+}
+
+.rsvp-ajustes-home {
+  display: contents;
+}
+
+.rsvp-foco-overlay__rodape {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+  width: 100%;
+  max-width: 40rem;
+  flex-shrink: 0;
+  padding-bottom: var(--spacing-2);
+}
+
+.rsvp-foco-overlay__temas-slot .rsvp-temas-bar__label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.rsvp-foco-overlay__ajustes-slot .rsvp-ajustes-slot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  width: 100%;
+}
+
+.rsvp-foco-overlay__ajustes-slot .rsvp-toolbar__item label,
+.rsvp-foco-overlay__ajustes-slot .rsvp-toolbar__tempo {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.rsvp-foco-overlay__ajustes-slot .rsvp-toolbar__tempo .neutral-900 {
+  color: var(--color-white);
+}
+
+.rsvp-foco-overlay__ajustes-slot .rsvp-slider-valor {
+  color: var(--color-brand-300);
+}
+
+.rsvp-foco-overlay__ajustes-slot .rsvp-toolbar__item--slider,
+.rsvp-foco-overlay__ajustes-slot .rsvp-toolbar__item--wpm {
+  flex: 1 1 100%;
+  max-width: 100%;
+}
+
+.rsvp-foco-overlay__controles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  flex-shrink: 0;
+}
+
+body.rsvp-modo-foco {
+  overflow: hidden;
+}

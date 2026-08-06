@@ -1,0 +1,286 @@
+/*
+  Datepicker — layout no estilo Untitled UI / Figma.
+  Uso: estrutura .datepicker + .datepicker-field (trigger do input).
+*/
+
+.datepicker-field {
+  position: relative;
+  width: 100%;
+}
+
+.datepicker-field__input {
+  min-width: 100%;
+  height: 40px;
+  padding: var(--spacing-2) var(--spacing-10) var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--color-neutral-300);
+  border-radius: 8px;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-neutral-900);
+  font-size: var(--font-size-text-md);
+  cursor: pointer;
+}
+
+.datepicker-field__input:focus,
+.datepicker-field__input:focus-visible {
+  outline: none;
+  border-color: var(--color-brand-300);
+  box-shadow: var(--shadow-sm);
+}
+
+.datepicker-field__icon {
+  position: absolute;
+  top: 50%;
+  right: var(--spacing-3);
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: none;
+  padding: 0;
+  background: transparent;
+  color: var(--color-neutral-500);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.datepicker {
+  width: 328px;
+  max-width: calc(100vw - 2rem);
+  padding: var(--spacing-4);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 12px;
+  background: var(--color-white);
+  box-shadow: var(--shadow-xl);
+  box-sizing: border-box;
+}
+
+.datepicker__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-3);
+}
+
+.datepicker__month {
+  margin: 0;
+  flex: 1;
+  text-align: center;
+  color: var(--color-neutral-900);
+  font-size: var(--font-size-text-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-text-md);
+}
+
+.datepicker__nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-neutral-500);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.datepicker__nav:hover {
+  background: var(--color-neutral-50);
+  color: var(--color-neutral-700);
+}
+
+.datepicker__nav img,
+.datepicker__nav svg {
+  width: 20px;
+  height: 20px;
+}
+
+.datepicker__toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-4);
+}
+
+.datepicker__selected {
+  width: 100%;
+  height: 40px;
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--color-neutral-300);
+  border-radius: 8px;
+  background: var(--color-white);
+  color: var(--color-neutral-900);
+  font-size: var(--font-size-text-md);
+  font-weight: var(--font-weight-medium);
+  box-sizing: border-box;
+}
+
+.datepicker__selected:focus,
+.datepicker__selected:focus-visible {
+  outline: none;
+  border-color: var(--color-brand-300);
+}
+
+.datepicker__today {
+  height: 40px;
+  padding: 0 var(--spacing-4);
+  border: 1px solid var(--color-neutral-300);
+  border-radius: 8px;
+  background: var(--color-white);
+  color: var(--color-neutral-700);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-semibold);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.datepicker__today:hover {
+  background: var(--color-neutral-50);
+  border-color: var(--color-neutral-400);
+}
+
+.datepicker__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  margin-bottom: var(--spacing-1);
+}
+
+.datepicker__weekday {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  color: var(--color-neutral-700);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.datepicker__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+}
+
+.datepicker__day {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1;
+  max-height: 40px;
+  border: none;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--color-neutral-700);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-regular);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.datepicker__day:hover,
+.datepicker__day--hover {
+  background: var(--color-neutral-100);
+}
+
+.datepicker__day--outside {
+  color: var(--color-neutral-400);
+}
+
+.datepicker__day--today:not(.datepicker__day--selected) {
+  background: var(--color-neutral-100);
+  font-weight: var(--font-weight-semibold);
+}
+
+.datepicker__day--selected,
+.datepicker__day--selected:hover {
+  background: var(--color-brand-600);
+  color: var(--color-white);
+  font-weight: var(--font-weight-semibold);
+}
+
+.datepicker__day--dot::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: var(--color-brand-500);
+}
+
+.datepicker__day--selected.datepicker__day--dot::after {
+  background: var(--color-white);
+}
+
+.datepicker__day:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.datepicker__footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-4);
+  padding-top: var(--spacing-4);
+  border-top: 1px solid var(--color-neutral-200);
+}
+
+/* Painel flutuante sob o campo */
+.datepicker-popover {
+  position: absolute;
+  z-index: 1200;
+  top: calc(100% + var(--spacing-2));
+  left: 0;
+  transform-origin: top center;
+}
+
+.datepicker-popover--fixed {
+  position: fixed;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@keyframes datepicker-popover-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes datepicker-popover-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+}
+
+/* Vue <Transition name="datepicker"> no painel */
+.datepicker-enter-active {
+  animation: datepicker-popover-in 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.datepicker-leave-active {
+  animation: datepicker-popover-out 0.16s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+    both;
+  pointer-events: none;
+}

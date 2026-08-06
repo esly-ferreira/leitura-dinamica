@@ -1,0 +1,163 @@
+/*
+  Card — container simples no estilo da table-card.
+  Uso:
+  <div class="cards">
+    <article class="card card--sm">
+      <header class="card__header">
+        <h3 class="card__title">Título</h3>
+        <p class="card__meta">Meta</p>
+      </header>
+      <div class="card__body">…</div>
+      <footer class="card__footer">…</footer>
+    </article>
+  </div>
+*/
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: var(--spacing-4);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.cards--2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 12px;
+  background: var(--color-white);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4) var(--spacing-6);
+  background: var(--color-neutral-50);
+  border-bottom: 1px solid var(--color-neutral-200);
+  box-sizing: border-box;
+}
+
+.card__title {
+  margin: 0;
+  color: var(--color-neutral-900);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25rem;
+}
+
+.card__meta {
+  margin: 0;
+  color: var(--color-neutral-600);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.25rem;
+  white-space: nowrap;
+}
+
+.card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4) var(--spacing-6);
+  color: var(--color-neutral-600);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.25rem;
+  background: var(--color-white);
+  box-sizing: border-box;
+}
+
+/* Valor em destaque nos KPIs */
+.card .info-stat__value {
+  margin-top: var(--spacing-3);
+  font-size: var(--font-size-display-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-display-sm);
+  letter-spacing: -0.02em;
+}
+
+.card__body > .md-button-mini {
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-top: 1px solid var(--color-neutral-200);
+  background: var(--color-white);
+  box-sizing: border-box;
+}
+
+/* Tamanhos */
+.card--sm .card__header,
+.card--sm .card__body {
+  padding: var(--spacing-3) var(--spacing-4);
+}
+
+.card--sm .card__footer {
+  padding: var(--spacing-2) var(--spacing-3);
+}
+
+.card--md .card__header,
+.card--md .card__body {
+  padding: var(--spacing-4) var(--spacing-6);
+}
+
+.card--lg .card__header,
+.card--lg .card__body {
+  padding: var(--spacing-5) var(--spacing-6);
+}
+
+.card--lg .card__footer {
+  padding: var(--spacing-4) var(--spacing-6);
+}
+
+/* Span no grid */
+.card--span-2 {
+  grid-column: span 2;
+}
+
+.card--span-3 {
+  grid-column: span 3;
+}
+
+@media (max-width: 768px) {
+  .cards,
+  .cards--2 {
+    grid-template-columns: 1fr;
+  }
+
+  .card--span-2,
+  .card--span-3 {
+    grid-column: span 1;
+  }
+
+  .card__header,
+  .card__body {
+    padding: var(--spacing-3) var(--spacing-4);
+  }
+
+  .card__footer {
+    padding: var(--spacing-3);
+  }
+}

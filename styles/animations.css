@@ -1,0 +1,129 @@
+/* Animista: text-focus-in */
+@keyframes text-focus-in {
+  0% {
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+.text-focus-in {
+  animation: text-focus-in 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+/* Inverso do text-focus-in — sai com blur */
+@keyframes text-focus-out {
+  0% {
+    filter: blur(0);
+    opacity: 1;
+  }
+  100% {
+    filter: blur(12px);
+    opacity: 0;
+  }
+}
+
+.text-focus-out {
+  animation: text-focus-out 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+/* Animista: shake-horizontal */
+
+@keyframes shake-horizontal {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    transform: translateX(-10px);
+  }
+  20%,
+  40%,
+  60% {
+    transform: translateX(10px);
+  }
+  80% {
+    transform: translateX(8px);
+  }
+  90% {
+    transform: translateX(-8px);
+  }
+}
+.shake-horizontal {
+  animation: shake-horizontal 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+
+/* Animista: scale-in-center — cresce de dentro (nunca passa de 1) */
+@keyframes scale-in-center {
+  0% {
+    transform: scale(0.92); 
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.scale-in-center {
+  transform-origin: center center;
+  animation: scale-in-center 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/*
+  Zoom + blur sem gerar scrollbar:
+  - scale só sobe até 1 (nunca > 1)
+  - blur baixo para não expandir a paint area
+*/
+@keyframes scale-blur-in {
+  0% {
+    transform: scale(0.97);
+    filter: blur(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+.scale-blur-in {
+  transform-origin: center center;
+  animation: scale-blur-in 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes scale-blur-out {
+  0% {
+    transform: scale(1);
+    filter: blur(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.97);
+    filter: blur(20px);
+    opacity: 0;
+  }
+}
+
+.scale-blur-out {
+  transform-origin: center center;
+  animation: scale-blur-out 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+/* Vue <Transition name="scale-blur" mode="out-in"> */
+.scale-blur-enter-active {
+  transform-origin: center center;
+  animation: scale-blur-in 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.scale-blur-leave-active {
+  transform-origin: center center;
+  animation: scale-blur-out 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}

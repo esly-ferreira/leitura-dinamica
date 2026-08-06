@@ -1,0 +1,20 @@
+/*
+  Status text — cor sem fundo (badge “leve”).
+  Uso: <span class="status-text status-text--success">Sim</span>
+*/
+
+.status-text {
+  font-weight: var(--font-weight-semibold);
+}
+
+.status-text--success {
+  color: var(--color-green-700);
+}
+
+.status-text--danger {
+  color: var(--color-red-700);
+}
+
+.status-text--neutral {
+  color: var(--color-neutral-600);
+}

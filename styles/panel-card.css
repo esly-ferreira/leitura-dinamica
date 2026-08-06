@@ -1,0 +1,61 @@
+/*
+  Panel card — container genérico (header / body / footer).
+  Uso com InfoStat no body em grid.
+*/
+
+.panel-card {
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-white);
+  box-sizing: border-box;
+}
+
+.panel-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding: var(--spacing-5) var(--spacing-6);
+}
+
+.panel-card__header h3,
+.panel-card__title {
+  margin: 0;
+  color: var(--color-neutral-900);
+}
+
+.panel-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2) var(--spacing-4);
+  margin: 0;
+}
+
+.panel-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+  padding: var(--spacing-5) var(--spacing-6);
+  border-top: 1px solid var(--color-neutral-200);
+  box-sizing: border-box;
+}
+
+.panel-card__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-6);
+}
+
+.panel-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4) var(--spacing-6);
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .panel-card__grid {
+    grid-template-columns: 1fr;
+  }
+}

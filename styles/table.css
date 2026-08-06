@@ -1,0 +1,391 @@
+/*
+  Table — layout no estilo Untitled UI.
+  Uso:
+  <div class="table-card">
+    <div class="table-scroll">
+      <table class="table">
+        <thead>…</thead>
+        <tbody>
+          <!-- carregando: -->
+          <TableSkeleton :columns="8" :rows="10" />
+          <!-- dados: -->
+          <tr>…</tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-card__footer">
+      <!-- .pagination -->
+      <!-- teste git push -->
+    </div>
+  </div>
+
+  Altura de linha unificada (texto + md-button-mini) e fade nas linhas
+  já vêm com .table / .table-skeleton — sem CSS extra na página.
+*/
+
+.table td.table-empty {
+  text-align: center;
+  color: var(--color-neutral-500);
+  white-space: normal;
+}
+
+.table-card {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 12px;
+  background: var(--color-white);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  min-width: 40rem;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.table th,
+.table td {
+  padding: var(--spacing-4) var(--spacing-6);
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.table thead th {
+  background: var(--color-neutral-50);
+  border-bottom: 1px solid var(--color-neutral-200);
+  color: var(--color-neutral-600);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25rem;
+}
+
+.table tbody td {
+  height: calc(var(--spacing-4) * 2 + 28px);
+  border-bottom: 1px solid var(--color-neutral-200);
+  color: var(--color-neutral-600);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.25rem;
+  background: var(--color-white);
+  box-sizing: border-box;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover td {
+  background: var(--color-neutral-50);
+}
+
+/* Fade suave das linhas (dados e skeleton) */
+.table tbody tr {
+  animation: table-row-fade-in 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes table-row-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Checkbox */
+.table__check {
+  width: 3rem;
+  padding-left: var(--spacing-4);
+  padding-right: var(--spacing-3);
+}
+
+.table__check input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  padding: 0;
+  border-radius: 4px;
+  border: 1px solid var(--color-neutral-300);
+  box-shadow: none;
+  accent-color: var(--color-brand-600);
+  cursor: pointer;
+}
+
+/* Sort header */
+.table__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.table__sort .material-symbols-rounded {
+  color: var(--color-neutral-400);
+}
+
+/* Célula principal (ex.: #3066) */
+.table__primary {
+  color: var(--color-neutral-900);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Ações à direita */
+.table__actions {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.table__action {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  margin-left: var(--spacing-4);
+  border: none;
+  background: transparent;
+  color: var(--color-neutral-700);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.25rem;
+  cursor: pointer;
+}
+
+.table__action:first-child {
+  margin-left: 0;
+}
+
+.table__action:hover {
+  color: var(--color-neutral-900);
+}
+
+/* Badge de status */
+.table-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  height: 1.5rem;
+  padding: 0 var(--spacing-2) 0 var(--spacing-1);
+  border-radius: 999px;
+  font-size: var(--font-size-text-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.table-badge .material-symbols-rounded {
+  font-size: 0.75rem;
+}
+
+.table-badge--success {
+  background: var(--color-green-50);
+  color: var(--color-green-700);
+}
+
+.table-badge--neutral {
+  background: var(--color-neutral-100);
+  color: var(--color-neutral-700);
+}
+
+.table-badge--danger {
+  background: var(--color-red-50);
+  color: var(--color-red-700);
+}
+
+/* Usuário (avatar + nome + sub) */
+.table-user {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  min-width: 0;
+}
+
+.table-user__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--color-brand-100);
+  color: var(--color-brand-700);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.table-user__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.table-user__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.table-user__name {
+  color: var(--color-neutral-900);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25rem;
+}
+
+.table-user__sub {
+  color: var(--color-neutral-600);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Footer da card (paginação) */
+.table-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-3) var(--spacing-4);
+  border-top: 1px solid var(--color-neutral-200);
+  background: var(--color-white);
+  box-sizing: border-box;
+}
+
+/* Variante: Previous / Next nas extremidades (estilo card Untitled UI) */
+.table-card__footer--spread {
+  justify-content: space-between;
+  gap: var(--spacing-3);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    padding: var(--spacing-3) var(--spacing-4);
+  }
+
+  .table tbody td,
+  .table-skeleton-row td {
+    height: calc(var(--spacing-3) * 2 + 28px);
+  }
+
+  .table__check {
+    padding-left: var(--spacing-3);
+  }
+
+  .table-card__footer {
+    padding: var(--spacing-3);
+  }
+
+  .table-card__footer--spread {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .table {
+    min-width: 32rem;
+  }
+
+  .table th,
+  .table td {
+    padding: var(--spacing-3);
+  }
+
+  .table tbody td,
+  .table-skeleton-row td {
+    height: calc(var(--spacing-3) * 2 + 28px);
+  }
+}
+
+.table-skeleton {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 1.25rem; /* mesmo line-height do texto da célula */
+  margin: 0;
+  border-radius: 4px;
+  background: var(--color-neutral-200);
+  animation: table-skeleton-pulse 1.2s ease-in-out infinite;
+  box-sizing: border-box;
+}
+
+.table-skeleton--sm {
+  width: 40%;
+}
+
+.table-skeleton--md {
+  width: 70%;
+}
+
+.table-skeleton--lg {
+  width: 85%;
+}
+
+.table-skeleton--full {
+  width: 100%;
+}
+
+.table-skeleton-row td {
+  height: calc(var(--spacing-4) * 2 + 28px);
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+/* Última coluna (Ações): barra no tamanho do md-button-mini */
+.table-skeleton-row td:last-child {
+  text-align: right;
+}
+
+.table-skeleton-row td:last-child .table-skeleton {
+  display: inline-block;
+  width: 4.5rem;
+  max-width: 4.5rem;
+  height: 28px;
+  border-radius: 6px;
+  vertical-align: middle;
+}
+
+@keyframes table-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/*
+  Vue <Transition name="table-fade" mode="out-in"> no tbody/conteúdo.
+  Uso opcional para fade out → fade in na troca de página.
+*/
+.table-fade-enter-active,
+.table-fade-leave-active {
+  transition: opacity 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.table-fade-enter-from,
+.table-fade-leave-to {
+  opacity: 0;
+}

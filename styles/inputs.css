@@ -1,0 +1,189 @@
+/* Label do campo */
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: var(--font-size-text-sm);
+  color: var(--color-neutral-700);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Linha de campos — sequenciais e autoajustáveis */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--spacing-4);
+  width: 100%;
+}
+
+.form-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/**
+ * Tamanhos de campo — uma tag: sm | md | lg | xl | fill
+ * Uso: <div class="form-card sm">…</div>
+ * Em .form-row, crescem/encolhem e quebram linha quando necessário.
+ */
+.form-card.sm {
+  flex: 1 1 6.5rem;
+  max-width: 8.5rem;
+}
+
+.form-card.md {
+  flex: 1.5 1 10rem;
+  max-width: 14rem;
+}
+
+.form-card.lg {
+  flex: 2 1 14rem;
+  max-width: 20rem;
+}
+
+.form-card.xl {
+  flex: 3 1 18rem;
+}
+
+.form-card.fill {
+  flex: 1 1 100%;
+  max-width: none;
+}
+
+/**
+ * Textarea — mesma estética do input, altura flexível.
+ * Uso: <div class="form-card fill"><label>…</label><textarea rows="4">…</textarea></div>
+ * Modificadores opcionais: textarea--sm | textarea--md | textarea--lg
+ */
+textarea.textarea--sm {
+  min-height: 4.5rem;
+}
+
+textarea.textarea--md {
+  min-height: 6.5rem;
+}
+
+textarea.textarea--lg {
+  min-height: 10rem;
+}
+
+textarea.textarea--no-resize {
+  resize: none;
+}
+
+/* Input / select padrão */
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid var(--color-neutral-300);
+  border-radius: 8px;
+  padding: var(--spacing-2);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-neutral-900);
+  font-size: var(--font-size-text-md);
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+}
+
+input,
+select {
+  height: 40px;
+}
+
+textarea {
+  min-height: 6.5rem;
+  padding: var(--spacing-3);
+  line-height: 1.5;
+  resize: vertical;
+  font-family: inherit;
+}
+
+select {
+  cursor: pointer;
+}
+
+/* Input com ícone à esquerda */
+input.input-with-icon {
+  padding-left: var(--spacing-10);
+}
+
+/* Input com ícone à direita */
+input.input-with-icon-right {
+  padding-right: var(--spacing-10);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-neutral-500);
+  font-size: var(--font-size-text-md);
+  font-weight: var(--font-weight-thin);
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border: 1px solid var(--color-brand-300);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border: 1px solid var(--color-brand-300);
+}
+
+/* Estado de erro do input / textarea */
+input.input-error,
+textarea.input-error,
+.form-card.is-error input,
+.form-card.is-error textarea {
+  border-color: var(--color-red-500);
+}
+
+/* Shake ao entrar em erro (usa @keyframes do animations.css) */
+input.input-error.shake-horizontal,
+textarea.input-error.shake-horizontal,
+.form-card.is-error input.shake-horizontal,
+.form-card.is-error textarea.shake-horizontal {
+  animation: shake-horizontal 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+
+input.input-error:hover,
+input.input-error:focus,
+textarea.input-error:hover,
+textarea.input-error:focus,
+.form-card.is-error input:hover,
+.form-card.is-error input:focus,
+.form-card.is-error textarea:hover,
+.form-card.is-error textarea:focus {
+  border-color: var(--color-red-500);
+  box-shadow: 0 0 0 4px var(--color-red-100);
+}
+
+/* Mensagem de erro abaixo do campo */
+.input-error-message {
+  display: block;
+  margin-top: 6px;
+  font-size: var(--font-size-text-sm);
+  line-height: 1.25rem;
+  color: var(--color-red-600);
+  font-weight: var(--font-weight-regular);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--color-white) inset;
+  box-shadow: var(--shadow-sm);
+  -webkit-text-fill-color: var(--color-neutral-900);
+  caret-color: var(--color-neutral-900);
+  transition: background-color 9999s ease-in-out 0s;
+}

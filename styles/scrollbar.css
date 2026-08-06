@@ -1,0 +1,102 @@
+/*
+  Scrollbar padrão do tema — aplicado em todas as telas.
+
+  Ajuste as variáveis em :root abaixo para mudar o visual global.
+  Para um container específico, sobrescreva as vars nele, ex.:
+    .caixa-menu { --scrollbar-size: 6px; }
+*/
+
+:root {
+  /* Largura (vertical) / altura (horizontal) da barra */
+  --scrollbar-size: 8px;
+
+  /* Cor do “trilho” (fundo atrás do polegar) */
+  --scrollbar-track: transparent;
+
+  /* Cor do polegar (a parte que você arrasta) */
+  --scrollbar-thumb: var(--color-neutral-300);
+
+  /* Cor do polegar ao passar o mouse */
+  --scrollbar-thumb-hover: var(--color-neutral-400);
+
+  /* Cor do polegar enquanto clica / arrasta */
+  --scrollbar-thumb-active: var(--color-neutral-500);
+
+  /* Arredondamento do polegar e do trilho (0 = retangular) */
+  --scrollbar-radius: 9999px;
+
+  /* Espaço interno entre o polegar e a borda do trilho (WebKit) */
+  --scrollbar-thumb-border: 2px;
+
+  /* Cor da borda do polegar — normalmente igual ao fundo da página/área */
+  --scrollbar-thumb-border-color: transparent;
+}
+
+/* ---------- Firefox ---------- */
+* {
+  scrollbar-width: thin; /* auto | thin | none */
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* ---------- Chrome, Edge, Safari (WebKit) ---------- */
+*::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: var(--scrollbar-radius);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: var(--scrollbar-radius);
+  /* A borda “encolhe” o polegar visualmente (efeito mais fino) */
+  border: var(--scrollbar-thumb-border) solid var(--scrollbar-thumb-border-color);
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background: var(--scrollbar-thumb-active);
+  background-clip: padding-box;
+}
+
+/*
+  Setas (▲ ▼) da scrollbar — removidas.
+  Chrome/Edge às vezes exige os seletores :start/:end além do display:none.
+*/
+*::-webkit-scrollbar-button,
+*::-webkit-scrollbar-button:vertical:start:decrement,
+*::-webkit-scrollbar-button:vertical:end:increment,
+*::-webkit-scrollbar-button:horizontal:start:decrement,
+*::-webkit-scrollbar-button:horizontal:end:increment,
+*::-webkit-scrollbar-button:single-button,
+*::-webkit-scrollbar-button:double-button {
+  display: none;
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: none;
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/*
+  Utilitário opcional: esconder a scrollbar sem desativar o scroll.
+  Uso: class="scrollbar-hidden" no elemento.
+*/
+.scrollbar-hidden {
+  scrollbar-width: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}

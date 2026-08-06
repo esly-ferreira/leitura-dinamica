@@ -1,0 +1,44 @@
+/*
+  Info / metric item — ícone + título + valor + descrição.
+*/
+
+.info-stat {
+  display: flex;
+  gap: var(--spacing-3);
+  align-items: flex-start;
+  min-width: 0;
+  margin-top: var(--spacing-2);
+}
+
+.info-stat__icon {
+  color: var(--color-brand-600);
+  flex-shrink: 0;
+}
+
+.info-stat__content {
+  min-width: 0;
+}
+
+.info-stat__title {
+  display: block;
+  margin: 0 0 2px;
+  color: var(--color-neutral-900);
+  font-size: var(--font-size-text-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.25rem;
+}
+
+.info-stat__value {
+  margin: 0;
+  color: var(--color-neutral-900);
+  font-size: var(--font-size-text-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.5rem;
+}
+
+.info-stat__description {
+  margin: 0;
+  color: var(--color-neutral-600);
+  font-size: var(--font-size-text-sm);
+  line-height: 1.25rem;
+}

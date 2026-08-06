@@ -1,0 +1,437 @@
+/* Botões — estilo 3D com tokens brand / danger / neutral */
+
+.md-button,
+.md-button-mini,
+.md-button-mini-danger,
+.md-button-mini-warning,
+.md-button-secondary,
+.md-button-danger,
+.md-button-warning {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  width: auto;
+  height: 40px;
+  padding: var(--spacing-3) var(--spacing-5) var(--spacing-3) var(--spacing-4);
+  border-radius: 8px;
+  border: 1px solid var(--color-brand-700);
+  background: linear-gradient(
+    180deg,
+    var(--color-brand-400) 0%,
+    var(--color-brand-500) 100%
+  );
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold, 600);
+  line-height: 1.4;
+  cursor: pointer;
+  transform: translateY(0);
+  filter: brightness(1);
+  box-shadow:
+    inset 0 1px 0px rgba(255, 255, 255, 0.271),
+    inset 0 -1px 0px rgba(0, 0, 0, 0.137),
+    0 4px 6px rgb(0 0 0 / 0.15);
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Mini — mesmas características do primary, tamanho reduzido */
+.md-button-mini,
+.md-button-mini-danger,
+.md-button-mini-warning {
+  height: 28px;
+  gap: var(--spacing-1);
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.2;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.28),
+    inset 0 -1px 0 rgb(0 0 0 / 0.14),
+    0 2px 4px rgb(0 0 0 / 0.12);
+}
+
+.md-button .material-symbols-rounded,
+.md-button-mini .material-symbols-rounded,
+.md-button-mini-danger .material-symbols-rounded,
+.md-button-mini-warning .material-symbols-rounded,
+.md-button-danger .material-symbols-rounded,
+.md-button-warning .material-symbols-rounded {
+  color: var(--color-brand-100);
+  font-weight: 300;
+  line-height: 1;
+  transition: color 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.md-button-mini .material-symbols-rounded,
+.md-button-mini-danger .material-symbols-rounded,
+.md-button-mini-warning .material-symbols-rounded {
+  font-size: 1rem;
+}
+
+.md-button-danger .material-symbols-rounded,
+.md-button-mini-danger .material-symbols-rounded {
+  color: var(--color-red-200);
+}
+
+.md-button-warning .material-symbols-rounded,
+.md-button-mini-warning .material-symbols-rounded {
+  color: var(--color-yellow-100);
+}
+
+/* Primary + Mini */
+.md-button:hover:not(:disabled),
+.md-button-mini:hover:not(:disabled) {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.35),
+    inset 0 -1px 0 rgb(0 0 0 / 0.18),
+    0 6px 12px rgb(0 0 0 / 0.18);
+}
+
+.md-button-mini:hover:not(:disabled),
+.md-button-mini-danger:hover:not(:disabled),
+.md-button-mini-warning:hover:not(:disabled) {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.35),
+    inset 0 -1px 0 rgb(0 0 0 / 0.18),
+    0 4px 8px rgb(0 0 0 / 0.16);
+}
+
+.md-button:active:not(:disabled),
+.md-button-mini:active:not(:disabled),
+.md-button-mini-danger:active:not(:disabled),
+.md-button-mini-warning:active:not(:disabled) {
+  filter: brightness(0.98);
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 1px 2px rgb(0 0 0 / 0.3),
+    0 2px 3px rgb(0 0 0 / 0.15);
+  transition-duration: 0.05s;
+}
+
+.md-button:focus-visible,
+.md-button-mini:focus-visible {
+  outline: 2px solid var(--color-brand-300);
+  outline-offset: 2px;
+}
+
+.md-button:disabled,
+.md-button-mini:disabled,
+.md-button-mini-danger:disabled,
+.md-button-mini-warning:disabled {
+  background: var(--color-neutral-100);
+  border-color: var(--color-neutral-200);
+  color: var(--color-neutral-400);
+  box-shadow: none;
+  cursor: not-allowed;
+  filter: none;
+  transform: none;
+}
+
+.md-button:disabled .material-symbols-rounded,
+.md-button-mini:disabled .material-symbols-rounded,
+.md-button-mini-danger:disabled .material-symbols-rounded,
+.md-button-mini-warning:disabled .material-symbols-rounded {
+  color: var(--color-neutral-400);
+}
+
+/* Danger */
+.md-button-danger,
+.md-button-mini-danger {
+  border-color: var(--color-red-700);
+  background: linear-gradient(
+    180deg,
+    var(--color-red-400) 0%,
+    var(--color-red-600) 100%
+  );
+}
+
+.md-button-danger:hover:not(:disabled),
+.md-button-mini-danger:hover:not(:disabled) {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.35),
+    inset 0 -1px 0 rgb(0 0 0 / 0.18),
+    0 6px 12px rgb(0 0 0 / 0.18);
+}
+
+.md-button-danger:active:not(:disabled),
+.md-button-mini-danger:active:not(:disabled) {
+  filter: brightness(0.98);
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 1px 2px rgb(0 0 0 / 0.3),
+    0 2px 3px rgb(0 0 0 / 0.15);
+  transition-duration: 0.1s;
+}
+
+.md-button-danger:focus-visible,
+.md-button-mini-danger:focus-visible {
+  outline: 2px solid var(--color-red-300);
+  outline-offset: 2px;
+}
+
+.md-button-danger:disabled,
+.md-button-mini-danger:disabled {
+  background: var(--color-neutral-100);
+  border-color: var(--color-neutral-200);
+  color: var(--color-neutral-400);
+  box-shadow: none;
+  cursor: not-allowed;
+  filter: none;
+  transform: none;
+}
+
+.md-button-danger:disabled .material-symbols-rounded,
+.md-button-mini-danger:disabled .material-symbols-rounded {
+  color: var(--color-neutral-400);
+}
+
+/* Warning (atenção) */
+.md-button-warning,
+.md-button-mini-warning {
+  border-color: var(--color-yellow-600);
+  background: linear-gradient(
+    180deg,
+    var(--color-yellow-300) 0%,
+    var(--color-yellow-600) 100%
+  );
+}
+
+.md-button-warning:hover:not(:disabled),
+.md-button-mini-warning:hover:not(:disabled) {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.35),
+    inset 0 -1px 0 rgb(0 0 0 / 0.18),
+    0 6px 12px rgb(0 0 0 / 0.18);
+}
+
+.md-button-mini-warning:hover:not(:disabled) {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.35),
+    inset 0 -1px 0 rgb(0 0 0 / 0.18),
+    0 4px 8px rgb(0 0 0 / 0.16);
+}
+
+.md-button-warning:active:not(:disabled),
+.md-button-mini-warning:active:not(:disabled) {
+  filter: brightness(0.98);
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 1px 2px rgb(0 0 0 / 0.3),
+    0 2px 3px rgb(0 0 0 / 0.15);
+  transition-duration: 0.1s;
+}
+
+.md-button-warning:focus-visible,
+.md-button-mini-warning:focus-visible {
+  outline: 2px solid var(--color-yellow-300);
+  outline-offset: 2px;
+}
+
+.md-button-warning:disabled,
+.md-button-mini-warning:disabled {
+  background: var(--color-neutral-100);
+  border-color: var(--color-neutral-200);
+  color: var(--color-neutral-400);
+  box-shadow: none;
+  cursor: not-allowed;
+  filter: none;
+  transform: none;
+}
+
+.md-button-warning:disabled .material-symbols-rounded,
+.md-button-mini-warning:disabled .material-symbols-rounded {
+  color: var(--color-neutral-400);
+}
+
+/* Secondary */
+.md-button-secondary {
+  border-color: var(--color-neutral-300);
+  background: linear-gradient(
+    180deg,
+    var(--color-white) 0%,
+    var(--color-neutral-50) 100%
+  );
+  color: var(--color-neutral-700);
+  box-shadow:
+    inset 0 2px 2px rgb(255 255 255 / 0.9),
+    inset 0 -2px 3px rgb(0 0 0 / 0.06),
+    0 3px 5px rgb(0 0 0 / 0.08);
+}
+
+.md-button-secondary .material-symbols-rounded {
+  color: var(--color-neutral-500);
+  font-weight: 300;
+  line-height: 1;
+  transition: color 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.md-button-secondary:hover:not(:disabled) {
+  filter: brightness(0.98);
+  transform: translateY(-1px);
+  border-color: var(--color-neutral-400);
+  box-shadow:
+    inset 0 2px 2px rgb(255 255 255 / 0.95),
+    inset 0 -2px 3px rgb(0 0 0 / 0.08),
+    0 5px 10px rgb(0 0 0 / 0.1);
+}
+
+.md-button-secondary:active:not(:disabled) {
+  filter: brightness(0.96);
+  transform: translateY(1px);
+  background: var(--color-neutral-100);
+  box-shadow:
+    inset 0 1px 2px rgb(0 0 0 / 0.12),
+    0 1px 2px rgb(0 0 0 / 0.08);
+  transition-duration: 0.1s;
+}
+
+.md-button-secondary:focus-visible {
+  outline: 2px solid var(--color-neutral-400);
+  outline-offset: 2px;
+}
+
+.md-button-secondary:disabled {
+  background: var(--color-neutral-100);
+  border-color: var(--color-neutral-200);
+  color: var(--color-neutral-400);
+  box-shadow: none;
+  cursor: not-allowed;
+  filter: none;
+  transform: none;
+}
+
+.md-button-secondary:disabled .material-symbols-rounded {
+  color: var(--color-neutral-400);
+}
+
+/*
+  Toggle switch — off / on com animação.
+  Uso (checkbox):
+  <label class="md-toggle">
+    <input type="checkbox" class="md-toggle__input" />
+    <span class="md-toggle__track" aria-hidden="true">
+      <span class="md-toggle__thumb"></span>
+    </span>
+  </label>
+
+  Uso (botão):
+  <button
+    type="button"
+    class="md-toggle"
+    role="switch"
+    :aria-checked="ligado"
+    :class="{ 'is-on': ligado }"
+    @click="ligado = !ligado"
+  >
+    <span class="md-toggle__track" aria-hidden="true">
+      <span class="md-toggle__thumb"></span>
+    </span>
+  </button>
+*/
+
+.md-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.md-toggle__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.md-toggle__track {
+  position: relative;
+  display: block;
+  width: 2.75rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: var(--color-neutral-200);
+  transition: background-color 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  box-sizing: border-box;
+}
+
+.md-toggle__thumb {
+  position: absolute;
+  top: 0.125rem;
+  left: 0.125rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 999px;
+  background: var(--color-white);
+  box-shadow: var(--shadow-sm);
+  transform: translateX(0);
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+/* On — checkbox */
+.md-toggle__input:checked + .md-toggle__track {
+  background: var(--color-brand-600);
+}
+
+.md-toggle__input:checked + .md-toggle__track .md-toggle__thumb {
+  transform: translateX(1.25rem);
+}
+
+/* On — botão / role=switch */
+.md-toggle.is-on .md-toggle__track,
+.md-toggle[aria-checked="true"] .md-toggle__track {
+  background: var(--color-brand-600);
+}
+
+.md-toggle.is-on .md-toggle__thumb,
+.md-toggle[aria-checked="true"] .md-toggle__thumb {
+  transform: translateX(1.25rem);
+}
+
+.md-toggle:hover:not(:disabled) .md-toggle__track,
+.md-toggle:hover:not(:has(.md-toggle__input:disabled)) .md-toggle__track {
+  filter: brightness(0.97);
+}
+
+.md-toggle:focus-visible,
+.md-toggle__input:focus-visible + .md-toggle__track {
+  outline: 2px solid var(--color-brand-300);
+  outline-offset: 2px;
+}
+
+.md-toggle:disabled,
+.md-toggle:has(.md-toggle__input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.md-toggle:disabled .md-toggle__track,
+.md-toggle:has(.md-toggle__input:disabled) .md-toggle__track {
+  filter: none;
+}
+

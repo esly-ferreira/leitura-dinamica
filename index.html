@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leitura Dinâmica — RSVP</title>
+    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="styles/modal.css" />
+    <link rel="stylesheet" href="styles/rsvp.css" />
+  </head>
+  <body>
+    <div class="rsvp">
+      <header class="page-header">
+        <div class="page-header__title">
+          <h1 class="text-display-sm font-semibold">Leitura Dinâmica</h1>
+          <p class="text-text-md neutral-600">
+            Organize textos em partes, salve localmente e leia palavra por palavra.
+          </p>
+        </div>
+      </header>
+
+      <main class="page-body">
+        <div class="rsvp__layout">
+          <!-- Painel esquerdo — Texto (compacto) -->
+          <article class="panel-card rsvp-panel rsvp-panel--texto">
+            <header class="panel-card__header">
+              <h2 class="panel-card__title text-display-xs font-semibold">Biblioteca</h2>
+              <p class="panel-card__meta text-text-sm neutral-600">
+                Estado:
+                <span id="rsvp-estado" class="status-text status-text--neutral">Parado</span>
+              </p>
+            </header>
+
+            <div class="panel-card__body">
+              <p class="rsvp-aviso-local text-text-xs neutral-600">
+                <span class="material-symbols-rounded">info</span>
+                Os textos ficam salvos apenas neste navegador, localmente. Não é online.
+              </p>
+
+              <div class="form-card fill">
+                <label for="rsvp-titulo">Título da parte</label>
+                <input
+                  id="rsvp-titulo"
+                  type="text"
+                  placeholder="Ex.: Capítulo 1 — O início"
+                  maxlength="120"
+                />
+              </div>
+
+              <div class="form-card fill">
+                <label for="rsvp-textarea">Texto da parte</label>
+                <textarea
+                  id="rsvp-textarea"
+                  class="textarea--md textarea--no-resize rsvp-textarea"
+                  rows="8"
+                  placeholder="Cole ou digite o texto desta parte…"
+                  spellcheck="false"
+                ></textarea>
+              </div>
+
+              <div class="page-actions-interior rsvp-texto-acoes">
+                <button type="button" id="rsvp-btn-colar" class="md-button-mini">
+                  <span class="material-symbols-rounded">content_paste</span>
+                  Colar
+                </button>
+                <button type="button" id="rsvp-btn-nova" class="md-button-mini">
+                  <span class="material-symbols-rounded">add</span>
+                  Nova
+                </button>
+              </div>
+
+              <div class="rsvp-partes">
+                <div class="rsvp-partes__header">
+                  <h3 class="text-text-sm font-semibold neutral-900">Partes salvas</h3>
+                  <span id="rsvp-partes-contagem" class="text-text-xs neutral-600">0 partes</span>
+                </div>
+                <ul id="rsvp-partes-lista" class="rsvp-partes__lista" aria-label="Lista de partes"></ul>
+                <p id="rsvp-partes-vazio" class="rsvp-partes__vazio text-text-sm neutral-600">
+                  Nenhuma parte salva ainda.
+                </p>
+              </div>
+
+              <div class="rsvp-dados">
+                <h3 class="text-text-sm font-semibold neutral-900">Dados locais</h3>
+                <div class="page-actions-interior rsvp-dados__acoes">
+                  <button type="button" id="rsvp-btn-exportar" class="md-button-mini">
+                    <span class="material-symbols-rounded">download</span>
+                    Exportar
+                  </button>
+                  <button type="button" id="rsvp-btn-importar" class="md-button-mini">
+                    <span class="material-symbols-rounded">upload</span>
+                    Importar
+                  </button>
+                  <button type="button" id="rsvp-btn-limpar-tudo" class="md-button-mini-danger">
+                    <span class="material-symbols-rounded">delete_forever</span>
+                    Apagar tudo
+                  </button>
+                </div>
+                <input
+                  id="rsvp-input-importar"
+                  type="file"
+                  accept=".json,application/json"
+                  hidden
+                />
+              </div>
+
+              <div class="page-actions-interior rsvp-texto-acoes rsvp-texto-acoes--leitura">
+                <button type="button" id="rsvp-btn-reiniciar" class="md-button-mini-warning" disabled>
+                  <span class="material-symbols-rounded">replay</span>
+                  Reiniciar
+                </button>
+                <button type="button" id="rsvp-btn-voltar" class="md-button-mini rsvp-btn-voltar" disabled>
+                  <span class="material-symbols-rounded">skip_previous</span>
+                  Voltar
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Painel direito — Leitura (foco no leitor) -->
+          <article class="panel-card rsvp-panel rsvp-panel--leitura">
+            <header class="panel-card__header">
+              <div>
+                <h2 class="panel-card__title text-display-xs font-semibold">Leitura</h2>
+                <p id="rsvp-parte-atual" class="rsvp-parte-atual text-text-sm neutral-600">Nenhuma parte selecionada</p>
+              </div>
+            </header>
+
+            <div class="panel-card__body">
+              <div class="rsvp-progress">
+                <div class="rsvp-progress__meta text-text-sm neutral-600">
+                  <span>Palavra <strong id="rsvp-progresso-contagem" class="neutral-900">0 / 0</strong></span>
+                  <span id="rsvp-progresso-porcentagem">0%</span>
+                </div>
+                <input
+                  type="range"
+                  id="rsvp-progresso-slider"
+                  class="rsvp-slider"
+                  min="0"
+                  max="0"
+                  value="0"
+                  aria-label="Progresso da leitura"
+                />
+              </div>
+
+              <div id="rsvp-temas-home">
+                <div id="rsvp-temas-slot" class="rsvp-temas-bar">
+                  <span class="rsvp-temas-bar__label">Tema</span>
+                  <div class="rsvp-temas">
+                    <button type="button" class="md-button-mini rsvp-tema-btn rsvp-tema-btn--claro is-active" data-tema="claro">Claro</button>
+                    <button type="button" class="md-button-mini rsvp-tema-btn rsvp-tema-btn--escuro" data-tema="escuro">Escuro</button>
+                    <button type="button" class="md-button-mini rsvp-tema-btn rsvp-tema-btn--sepia" data-tema="sepia">Sepia</button>
+                    <button type="button" class="md-button-mini rsvp-tema-btn rsvp-tema-btn--alto-contraste" data-tema="alto-contraste">Contraste</button>
+                  </div>
+                </div>
+              </div>
+
+              <div id="rsvp-leitor-slot" class="rsvp-leitor-slot">
+                <div
+                  id="rsvp-leitor"
+                  class="rsvp-leitor rsvp-tema--claro rsvp-fonte--default"
+                  aria-label="Área de leitura dinâmica"
+                >
+                  <div class="rsvp-leitor__focal-line" aria-hidden="true"></div>
+                  <div class="rsvp-palavra-wrap">
+                    <div
+                      id="rsvp-palavra"
+                      class="rsvp-palavra is-empty"
+                      aria-live="polite"
+                      aria-atomic="true"
+                    >
+                      <span class="rsvp-palavra__antes"></span>
+                      <span class="rsvp-palavra__orp"></span>
+                      <span class="rsvp-palavra__depois"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="page-actions-interior rsvp-controles">
+                <button
+                  type="button"
+                  id="rsvp-btn-play"
+                  class="md-button"
+                  disabled
+                  aria-label="Iniciar leitura"
+                >
+                  <span id="rsvp-icone-play" class="material-symbols-rounded">play_arrow</span>
+                  <span id="rsvp-label-play">Iniciar</span>
+                </button>
+                <button type="button" id="rsvp-btn-avancar" class="md-button-secondary" disabled>
+                  <span class="material-symbols-rounded">skip_next</span>
+                  Avançar
+                </button>
+                <button
+                  type="button"
+                  id="rsvp-btn-foco"
+                  class="md-button-mini"
+                  title="Modo foco — tela cheia com fundo escuro"
+                  aria-label="Ativar modo foco"
+                >
+                  <span class="material-symbols-rounded">fullscreen</span>
+                  Foco
+                </button>
+              </div>
+
+              <div class="rsvp-toolbar">
+                <div class="rsvp-toolbar__item">
+                  <label for="rsvp-fonte">Fonte</label>
+                  <select id="rsvp-fonte" class="rsvp-toolbar__select">
+                    <option value="default">Inter</option>
+                    <option value="fonte-1">Georgia</option>
+                    <option value="fonte-2">Courier New</option>
+                    <option value="fonte-3">System UI</option>
+                  </select>
+                </div>
+
+                <div id="rsvp-ajustes-home" class="rsvp-ajustes-home">
+                  <div id="rsvp-ajustes-slot" class="rsvp-ajustes-slot">
+                  <div class="rsvp-toolbar__item rsvp-toolbar__item--slider">
+                    <div class="rsvp-slider-header">
+                      <label for="rsvp-tamanho-fonte">Tamanho</label>
+                      <span id="rsvp-tamanho-valor" class="rsvp-slider-valor brand-600">48px</span>
+                    </div>
+                    <input
+                      type="range"
+                      id="rsvp-tamanho-fonte"
+                      class="rsvp-slider"
+                      min="16"
+                      max="80"
+                      value="48"
+                    />
+                  </div>
+
+                  <div class="rsvp-toolbar__item rsvp-toolbar__item--wpm">
+                    <div class="rsvp-slider-header">
+                      <label for="rsvp-wpm">Velocidade</label>
+                      <span id="rsvp-wpm-valor" class="rsvp-slider-valor brand-600">300 WPM</span>
+                    </div>
+                    <input
+                      type="range"
+                      id="rsvp-wpm"
+                      class="rsvp-slider"
+                      min="150"
+                      max="1000"
+                      step="10"
+                      value="300"
+                    />
+                    <p id="rsvp-tempo-restante" class="rsvp-toolbar__tempo text-text-xs neutral-600">
+                      Tempo: <span class="neutral-900 font-medium">—</span>
+                    </p>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </main>
+    </div>
+
+    <div id="rsvp-modal" class="modal-overlay rsvp-modal" hidden aria-hidden="true">
+      <div class="modal modal--md" role="dialog" aria-modal="true" aria-labelledby="rsvp-modal-titulo">
+        <header class="modal__header">
+          <h2 id="rsvp-modal-titulo" class="modal__title text-display-xs font-semibold"></h2>
+        </header>
+        <div class="modal__body">
+          <p id="rsvp-modal-mensagem" class="text-text-md neutral-700" style="margin-top: var(--spacing-5);"></p>
+          <footer class="modal__footer">
+            <button type="button" id="rsvp-modal-cancelar" class="md-button-secondary">Cancelar</button>
+            <button type="button" id="rsvp-modal-confirmar" class="md-button-danger">Confirmar</button>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <div id="rsvp-foco-overlay" class="rsvp-foco-overlay" hidden aria-hidden="true">
+      <div class="rsvp-foco-overlay__backdrop"></div>
+      <div class="rsvp-foco-overlay__conteudo">
+        <button
+          type="button"
+          id="rsvp-btn-sair-foco"
+          class="rsvp-foco-overlay__sair md-button-mini"
+          aria-label="Sair do modo foco"
+        >
+          <span class="material-symbols-rounded">fullscreen_exit</span>
+          Sair
+        </button>
+        <div id="rsvp-foco-leitor-slot" class="rsvp-foco-overlay__leitor-slot"></div>
+        <div class="rsvp-foco-overlay__rodape">
+          <div id="rsvp-foco-temas-slot" class="rsvp-foco-overlay__temas-slot"></div>
+          <div class="rsvp-foco-overlay__controles">
+            <button type="button" id="rsvp-foco-voltar" class="md-button-secondary" disabled>
+              <span class="material-symbols-rounded">skip_previous</span>
+              Voltar
+            </button>
+            <button type="button" id="rsvp-foco-play" class="md-button" disabled aria-label="Iniciar leitura">
+              <span id="rsvp-foco-icone-play" class="material-symbols-rounded">play_arrow</span>
+              <span id="rsvp-foco-label-play">Iniciar</span>
+            </button>
+            <button type="button" id="rsvp-foco-avancar" class="md-button-secondary" disabled>
+              <span class="material-symbols-rounded">skip_next</span>
+              Avançar
+            </button>
+          </div>
+          <div id="rsvp-foco-ajustes-slot" class="rsvp-foco-overlay__ajustes-slot"></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="js/rsvp.js"></script>
+  </body>
+</html>

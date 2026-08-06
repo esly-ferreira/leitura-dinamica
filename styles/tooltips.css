@@ -1,0 +1,130 @@
+.tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tooltip__content {
+  position: absolute;
+  z-index: 1000;
+  left: 50%;
+  bottom: calc(100% + var(--spacing-2));
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 16rem;
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: 8px;
+  background-color: var(--color-neutral-900);
+  color: var(--color-white);
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-md);
+  font-weight: var(--font-weight-regular);
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.15s ease,
+    visibility 0.15s ease;
+    box-shadow: var(--shadow-3xl);
+}
+
+.tooltip__content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--color-neutral-900);
+}
+
+.tooltip:hover .tooltip__content,
+.tooltip:focus-within .tooltip__content {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Fora de containers com overflow (ex.: Teleport no body) */
+.tooltip__content--fixed {
+  position: fixed;
+  bottom: auto;
+  transform: translate(-50%, -100%);
+  opacity: 1;
+  visibility: visible;
+}
+
+.tooltip__content--fixed::after {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top-color: var(--color-neutral-900);
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+/* Tooltip fixo à direita (ex.: sidebar recolhida) */
+.tooltip__content--fixed-right {
+  position: fixed;
+  bottom: auto;
+  transform: translateY(-50%);
+  opacity: 1;
+  visibility: visible;
+}
+
+.tooltip__content--fixed-right::after {
+  top: 50%;
+  left: auto;
+  right: 100%;
+  transform: translateY(-50%);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: var(--color-neutral-900);
+}
+
+/* Posições opcionais */
+.tooltip--bottom .tooltip__content {
+  bottom: auto;
+  top: calc(100% + var(--spacing-2));
+}
+
+.tooltip--bottom .tooltip__content::after {
+  top: auto;
+  bottom: 100%;
+  border-top-color: transparent;
+  border-bottom-color: var(--color-neutral-900);
+}
+
+.tooltip--left .tooltip__content {
+  left: auto;
+  right: calc(100% + var(--spacing-2));
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip--left .tooltip__content::after {
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border-top-color: transparent;
+  border-left-color: var(--color-neutral-900);
+}
+
+.tooltip--right .tooltip__content {
+  left: calc(100% + var(--spacing-2));
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip--right .tooltip__content::after {
+  top: 50%;
+  left: auto;
+  right: 100%;
+  transform: translateY(-50%);
+  border-top-color: transparent;
+  border-right-color: var(--color-neutral-900);
+}

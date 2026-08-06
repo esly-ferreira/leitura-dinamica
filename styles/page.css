@@ -1,0 +1,91 @@
+/*
+  Page layout — cabeçalho e seções padrão das telas MFE.
+
+  Uso na página:
+  <div class="page-header">
+    <div class="page-header__title">
+      <h1 class="text-display-sm font-semibold">…</h1>
+      <p class="text-text-md neutral-600">…</p>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="page-section">
+      <h2 class="text-display-sm font-semibold">…</h2>
+      <p class="text-text-md neutral-600">…</p>
+    </div>
+    <div class="page-actions">…</div>
+  </div>
+
+  Uso dentro de modal, panel-card ou outro container com padding próprio:
+  <div class="page-body-interior">
+    <div class="page-section-interior">
+      <h2 class="text-display-sm font-semibold">…</h2>
+      <p class="text-text-md neutral-600">…</p>
+    </div>
+    <div class="page-actions-interior">…</div>
+  </div>
+*/
+
+.page-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  padding: var(--spacing-8);
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--color-neutral-200);
+}
+
+.page-header__title {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.page-body {
+  margin-top: var(--spacing-4);
+}
+
+.page-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding: 0 var(--spacing-8) var(--spacing-4) var(--spacing-8);
+  box-sizing: border-box;
+}
+
+.page-section h2,
+.page-section-interior h2 {
+  font-size: var(--font-size-display-xs);
+}
+
+/* Interior — mesma estética, sem padding horizontal (o container pai já fornece) */
+.page-body-interior {
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--spacing-4);
+  box-sizing: border-box;
+}
+
+.page-section-interior {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding: 0 0 var(--spacing-4);
+  box-sizing: border-box;
+}
+
+.page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+  padding: 0 var(--spacing-8) var(--spacing-6) var(--spacing-8);
+  box-sizing: border-box;
+}
+
+.page-actions-interior {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+  padding: 0 0 var(--spacing-6);
+  box-sizing: border-box;
+}

@@ -1,0 +1,70 @@
+/*
+  Ícone de tooltip pulsante.
+  Uso (com .tooltip de tooltips.css):
+
+  <h2 class="page-section__heading">
+    <span class="tooltip tooltip--icon" tabindex="0">
+      <span class="material-symbols-rounded sm tooltip__icon" aria-hidden="true"
+        >info</span
+      >
+      <span class="tooltip__content" role="tooltip">Sua mensagem</span>
+    </span>
+    Título da seção
+  </h2>
+*/
+
+@keyframes tooltip-icon-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-brand-500) 45%, transparent);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-brand-500) 0%, transparent);
+  }
+}
+
+.page-section__heading {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin: 0;
+}
+
+.tooltip--icon {
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.tooltip__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  color: var(--color-brand-700);
+  background: var(--color-brand-50);
+  cursor: help;
+  animation: tooltip-icon-pulse 1.8s ease-in-out infinite;
+}
+
+.tooltip--icon:hover .tooltip__icon,
+.tooltip--icon:focus-within .tooltip__icon,
+.tooltip--icon:focus .tooltip__icon {
+  animation: none;
+  color: var(--color-brand-800);
+  background: var(--color-brand-100);
+  box-shadow: none;
+  transform: scale(1);
+}
+
+.tooltip--icon:focus {
+  outline: none;
+}
+
+.tooltip--icon:focus-visible .tooltip__icon {
+  outline: 2px solid var(--color-brand-400);
+  outline-offset: 2px;
+}
