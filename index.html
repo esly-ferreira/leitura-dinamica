@@ -161,6 +161,24 @@
                   class="rsvp-leitor rsvp-tema--claro rsvp-fonte--default"
                   aria-label="Área de leitura dinâmica"
                 >
+                  <div
+                    id="rsvp-leitor-transicao"
+                    class="rsvp-leitor__transicao"
+                    hidden
+                    aria-live="polite"
+                  >
+                    <div class="rsvp-leitor__transicao-conteudo">
+                      <span class="rsvp-leitor__transicao-icone material-symbols-rounded" aria-hidden="true">
+                        swap_horiz
+                      </span>
+                      <p class="rsvp-leitor__transicao-label text-text-sm font-medium">Mudando de parte</p>
+                      <p id="rsvp-leitor-transicao-numero" class="rsvp-leitor__transicao-numero text-display-xs font-semibold"></p>
+                      <p id="rsvp-leitor-transicao-titulo" class="rsvp-leitor__transicao-titulo text-text-md"></p>
+                      <div class="rsvp-leitor__transicao-barra" aria-hidden="true">
+                        <span class="rsvp-leitor__transicao-barra-fill"></span>
+                      </div>
+                    </div>
+                  </div>
                   <div class="rsvp-leitor__focal-line" aria-hidden="true"></div>
                   <div class="rsvp-palavra-wrap">
                     <div
@@ -283,7 +301,7 @@
           class="rsvp-foco-overlay__sair md-button-mini"
           aria-label="Sair do modo foco"
         >
-          <span class="material-symbols-rounded">fullscreen_exit</span>
+          <span class="material-symbols-rounded">exit_to_app</span>
           Sair
         </button>
         <div id="rsvp-foco-leitor-slot" class="rsvp-foco-overlay__leitor-slot"></div>

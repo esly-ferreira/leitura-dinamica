@@ -16,6 +16,7 @@ const TAMANHO_FONTE_MAX = 80;
 const WPM_MIN = 150;
 const WPM_MAX = 1000;
 const WPM_PADRAO = 300;
+const DURACAO_TRANSICAO_PARTE_MS = 1500;
 
 const ESTADO = {
   PARADO: "parado",
@@ -89,6 +90,9 @@ const elementos = {
   palavraDepois: document.querySelector(".rsvp-palavra__depois"),
   palavraWrap: document.querySelector(".rsvp-palavra-wrap"),
   leitor: document.getElementById("rsvp-leitor"),
+  leitorTransicao: document.getElementById("rsvp-leitor-transicao"),
+  leitorTransicaoNumero: document.getElementById("rsvp-leitor-transicao-numero"),
+  leitorTransicaoTitulo: document.getElementById("rsvp-leitor-transicao-titulo"),
   leitorSlot: document.getElementById("rsvp-leitor-slot"),
   temasSlot: document.getElementById("rsvp-temas-slot"),
   temasHome: document.getElementById("rsvp-temas-home"),
@@ -264,8 +268,26 @@ function avancarPalavra() {
   agendarProximaPalavra();
 }
 
-function avancarManualmente() {
-  if (!app.palavras.length || app.indiceAtual >= app.palavras.length - 1) return;
+async function avancarManualmente() {
+  if (!app.palavras.length) return;
+
+  const proximaParte = biblioteca.obterProximaParte(app.parteAtualId);
+  const naUltimaPalavra = app.indiceAtual >= app.palavras.length - 1;
+
+  if (naUltimaPalavra) {
+    if (!proximaParte) return;
+
+    const estavaLendo = app.estado === ESTADO.LENDO;
+    limparTimer();
+    app.indiceAtual = app.palavras.length;
+    definirEstado(ESTADO.FINALIZADO);
+    atualizarPalavra();
+    atualizarProgresso();
+    atualizarTempoRestante();
+
+    await carregarParte(proximaParte.id, { autoIniciar: estavaLendo });
+    return;
+  }
 
   const estavaLendo = app.estado === ESTADO.LENDO;
   limparTimer();
@@ -494,9 +516,56 @@ function escapeHtml(texto) {
     .replace(/"/g, "&quot;");
 }
 
-function carregarParte(id, { autoIniciar = false } = {}) {
+let transicaoParteTimers = [];
+
+function limparTimersTransicaoParte() {
+  transicaoParteTimers.forEach(clearTimeout);
+  transicaoParteTimers = [];
+}
+
+function mostrarTransicaoParte(parte) {
+  return new Promise((resolve) => {
+    limparTimersTransicaoParte();
+
+    const { leitor, leitorTransicao, leitorTransicaoNumero, leitorTransicaoTitulo } =
+      elementos;
+
+    leitorTransicaoNumero.textContent = `Parte ${parte.ordem + 1}`;
+    leitorTransicaoTitulo.textContent = parte.titulo;
+
+    leitorTransicao.hidden = false;
+    leitor.classList.add("is-trocando-parte");
+    leitorTransicao.classList.remove("is-ativo");
+
+    requestAnimationFrame(() => {
+      leitorTransicao.classList.add("is-ativo");
+    });
+
+    const aoFinalizar = () => {
+      leitorTransicao.classList.remove("is-ativo");
+      leitor.classList.remove("is-trocando-parte");
+      transicaoParteTimers.push(
+        setTimeout(() => {
+          leitorTransicao.hidden = true;
+          resolve();
+        }, 350)
+      );
+    };
+
+    transicaoParteTimers.push(setTimeout(aoFinalizar, DURACAO_TRANSICAO_PARTE_MS));
+  });
+}
+
+async function carregarParte(id, { autoIniciar = false } = {}) {
   const parte = biblioteca.obterPartePorId(id);
   if (!parte) return;
+
+  const mudouParte = app.parteAtualId !== null && app.parteAtualId !== id;
+
+  if (mudouParte) {
+    if (app.estado === ESTADO.LENDO) limparTimer();
+    await mostrarTransicaoParte(parte);
+  }
 
   app.parteAtualId = parte.id;
   biblioteca.definirParteAtual(parte.id);
@@ -824,7 +893,10 @@ function alterarTamanhoFonte(tamanho) {
 
 function atualizarBotoes() {
   const temTexto = app.palavras.length > 0;
-  const noFim = app.indiceAtual >= app.palavras.length;
+  const proximaParte = biblioteca.obterProximaParte(app.parteAtualId);
+  const podeAvancarPalavra = temTexto && app.indiceAtual < app.palavras.length - 1;
+  const podeAvancarParte =
+    temTexto && proximaParte && app.indiceAtual >= app.palavras.length - 1;
   const temProgresso = app.indiceAtual > 0 || app.estado === ESTADO.FINALIZADO;
   const lendo = app.estado === ESTADO.LENDO;
   const pausado = app.estado === ESTADO.PAUSADO;
@@ -832,7 +904,7 @@ function atualizarBotoes() {
   elementos.btnPlay.disabled = !temTexto || app.estado === ESTADO.FINALIZADO;
   elementos.btnReiniciar.disabled = !temTexto || !temProgresso;
   elementos.btnVoltar.disabled = !temTexto || app.indiceAtual === 0;
-  elementos.btnAvancar.disabled = !temTexto || noFim;
+  elementos.btnAvancar.disabled = !podeAvancarPalavra && !podeAvancarParte;
 
   if (lendo) {
     elementos.iconePlay.textContent = "pause";

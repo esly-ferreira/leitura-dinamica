@@ -248,6 +248,143 @@
   z-index: 1;
 }
 
+/* Transição entre partes */
+.rsvp-leitor.is-trocando-parte {
+  border-color: var(--color-brand-400);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--color-brand-400) 22%, transparent),
+    0 8px 24px color-mix(in srgb, var(--color-brand-600) 12%, transparent);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.rsvp-leitor.is-trocando-parte .rsvp-palavra-wrap {
+  opacity: 0.15;
+  filter: blur(2px);
+  transition:
+    opacity 0.35s ease,
+    filter 0.35s ease;
+}
+
+.rsvp-leitor__transicao {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--rsvp-transicao-overlay, var(--color-neutral-50)) 90%, transparent);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.rsvp-leitor__transicao:not([hidden]) {
+  pointer-events: auto;
+}
+
+.rsvp-leitor__transicao.is-ativo {
+  opacity: 1;
+}
+
+.rsvp-leitor__transicao-conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+  max-width: 85%;
+  padding: var(--spacing-6) var(--spacing-8);
+  text-align: center;
+  transform: scale(0.92) translateY(8px);
+  opacity: 0;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
+}
+
+.rsvp-leitor__transicao.is-ativo .rsvp-leitor__transicao-conteudo {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.rsvp-leitor__transicao-icone {
+  font-size: 2rem;
+  color: var(--color-brand-500);
+  animation: rsvp-transicao-icone 1.2s ease-in-out infinite;
+}
+
+.rsvp-leitor__transicao-label {
+  margin: 0;
+  color: var(--rsvp-transicao-label, var(--color-neutral-600));
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.rsvp-leitor__transicao-numero {
+  margin: 0;
+  color: var(--rsvp-transicao-titulo, var(--color-neutral-900));
+}
+
+.rsvp-leitor__transicao-titulo {
+  margin: 0;
+  color: var(--rsvp-transicao-subtitulo, var(--color-neutral-700));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.rsvp-leitor__transicao-barra {
+  width: 100%;
+  max-width: 12rem;
+  height: 3px;
+  margin-top: var(--spacing-3);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-brand-400) 25%, transparent);
+  overflow: hidden;
+}
+
+.rsvp-leitor__transicao-barra-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--color-brand-400),
+    var(--color-brand-600)
+  );
+}
+
+.rsvp-leitor__transicao.is-ativo .rsvp-leitor__transicao-barra-fill {
+  animation: rsvp-transicao-barra 1.5s ease-in-out forwards;
+}
+
+@keyframes rsvp-transicao-icone {
+  0%,
+  100% {
+    transform: translateX(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(4px);
+    opacity: 1;
+  }
+}
+
+@keyframes rsvp-transicao-barra {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 .rsvp-palavra-wrap {
   position: relative;
   display: grid;
@@ -505,11 +642,19 @@
 
 /* Temas do leitor */
 .rsvp-leitor.rsvp-tema--claro {
+  --rsvp-transicao-overlay: var(--color-neutral-50);
+  --rsvp-transicao-label: var(--color-neutral-600);
+  --rsvp-transicao-titulo: var(--color-neutral-900);
+  --rsvp-transicao-subtitulo: var(--color-neutral-700);
   background: var(--color-neutral-50);
   border-color: var(--color-neutral-200);
 }
 
 .rsvp-leitor.rsvp-tema--escuro {
+  --rsvp-transicao-overlay: var(--color-neutral-900);
+  --rsvp-transicao-label: var(--color-neutral-400);
+  --rsvp-transicao-titulo: var(--color-white);
+  --rsvp-transicao-subtitulo: var(--color-neutral-300);
   background: var(--color-neutral-900);
   border-color: var(--color-neutral-700);
 }
@@ -528,6 +673,10 @@
 }
 
 .rsvp-leitor.rsvp-tema--sepia {
+  --rsvp-transicao-overlay: #f4ecd8;
+  --rsvp-transicao-label: #7a6a55;
+  --rsvp-transicao-titulo: #3d2b1f;
+  --rsvp-transicao-subtitulo: #5c4a3a;
   background: #f4ecd8;
   border-color: #e8dcc4;
 }
@@ -546,6 +695,10 @@
 }
 
 .rsvp-leitor.rsvp-tema--alto-contraste {
+  --rsvp-transicao-overlay: var(--color-black);
+  --rsvp-transicao-label: var(--color-neutral-300);
+  --rsvp-transicao-titulo: var(--color-white);
+  --rsvp-transicao-subtitulo: var(--color-neutral-200);
   background: var(--color-black);
   border-color: var(--color-white);
 }
