@@ -307,25 +307,27 @@
           <span class="material-symbols-rounded">exit_to_app</span>
           Sair
         </button>
-        <div id="rsvp-foco-leitor-slot" class="rsvp-foco-overlay__leitor-slot"></div>
-        <div class="rsvp-foco-overlay__rodape">
+        <aside class="rsvp-foco-overlay__lateral rsvp-foco-overlay__lateral--esquerda">
           <div id="rsvp-foco-temas-slot" class="rsvp-foco-overlay__temas-slot"></div>
+        </aside>
+        <div id="rsvp-foco-leitor-slot" class="rsvp-foco-overlay__leitor-slot"></div>
+        <aside class="rsvp-foco-overlay__lateral rsvp-foco-overlay__lateral--direita">
           <div class="rsvp-foco-overlay__controles">
-            <button type="button" id="rsvp-foco-voltar" class="md-button-secondary" disabled>
+            <button type="button" id="rsvp-foco-voltar" class="md-button-secondary" disabled aria-label="Voltar">
               <span class="material-symbols-rounded">skip_previous</span>
-              Voltar
+              <span class="rsvp-foco-overlay__btn-texto">Voltar</span>
             </button>
             <button type="button" id="rsvp-foco-play" class="md-button" disabled aria-label="Iniciar leitura">
               <span id="rsvp-foco-icone-play" class="material-symbols-rounded">play_arrow</span>
-              <span id="rsvp-foco-label-play">Iniciar</span>
+              <span id="rsvp-foco-label-play" class="rsvp-foco-overlay__btn-texto">Iniciar</span>
             </button>
-            <button type="button" id="rsvp-foco-avancar" class="md-button-secondary" disabled>
+            <button type="button" id="rsvp-foco-avancar" class="md-button-secondary" disabled aria-label="Avançar">
               <span class="material-symbols-rounded">skip_next</span>
-              Avançar
+              <span class="rsvp-foco-overlay__btn-texto">Avançar</span>
             </button>
           </div>
           <div id="rsvp-foco-ajustes-slot" class="rsvp-foco-overlay__ajustes-slot"></div>
-        </div>
+        </aside>
       </div>
     </div>
 
