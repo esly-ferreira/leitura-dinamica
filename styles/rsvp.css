@@ -873,3 +873,31 @@
 body.rsvp-modo-foco {
   overflow: hidden;
 }
+
+/* Tela cheia nativa (Fullscreen API) — some com as barras do navegador no celular */
+.rsvp-foco-overlay:fullscreen,
+.rsvp-foco-overlay:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+@media (max-width: 900px) {
+  .rsvp-foco-overlay__conteudo {
+    padding-top: max(var(--spacing-6), env(safe-area-inset-top));
+    padding-right: max(var(--spacing-6), env(safe-area-inset-right));
+    padding-bottom: max(var(--spacing-6), env(safe-area-inset-bottom));
+    padding-left: max(var(--spacing-6), env(safe-area-inset-left));
+  }
+
+  .rsvp-foco-overlay__sair {
+    top: max(var(--spacing-4), env(safe-area-inset-top));
+    right: max(var(--spacing-4), env(safe-area-inset-right));
+  }
+
+  .rsvp-foco-overlay__leitor-slot .rsvp-leitor {
+    border-radius: 0;
+    min-height: 14rem;
+    box-shadow: none;
+  }
+}

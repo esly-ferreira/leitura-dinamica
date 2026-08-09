@@ -980,6 +980,37 @@ function novaParte() {
   elementos.titulo.focus();
 }
 
+function ehCelular() {
+  return window.matchMedia("(max-width: 900px)").matches;
+}
+
+function estaEmTelaCheia() {
+  return !!(
+    document.fullscreenElement ||
+    document.webkitFullscreenElement ||
+    document.msFullscreenElement
+  );
+}
+
+function solicitarTelaCheia(el) {
+  const request =
+    el.requestFullscreen ||
+    el.webkitRequestFullscreen ||
+    el.msRequestFullscreen;
+  if (!request) return Promise.resolve();
+  return Promise.resolve(request.call(el)).catch(() => {});
+}
+
+function sairTelaCheia() {
+  if (!estaEmTelaCheia()) return Promise.resolve();
+  const exit =
+    document.exitFullscreen ||
+    document.webkitExitFullscreen ||
+    document.msExitFullscreen;
+  if (!exit) return Promise.resolve();
+  return Promise.resolve(exit.call(document)).catch(() => {});
+}
+
 function entrarModoFoco() {
   if (app.modoFoco) return;
 
@@ -992,6 +1023,11 @@ function entrarModoFoco() {
   elementos.focoAjustesSlot.appendChild(elementos.ajustesSlot);
   elementos.btnFoco.classList.add("is-active");
   elementos.btnFoco.setAttribute("aria-label", "Sair do modo foco");
+
+  // No celular, usa a Fullscreen API para esconder as barras do navegador.
+  if (ehCelular()) {
+    solicitarTelaCheia(elementos.focoOverlay);
+  }
 }
 
 function sairModoFoco() {
@@ -1006,6 +1042,15 @@ function sairModoFoco() {
   elementos.ajustesHome.appendChild(elementos.ajustesSlot);
   elementos.btnFoco.classList.remove("is-active");
   elementos.btnFoco.setAttribute("aria-label", "Ativar modo foco");
+
+  sairTelaCheia();
+}
+
+function aoMudarTelaCheia() {
+  // Se o usuário sair da tela cheia pelo gesto do sistema, fecha o modo foco.
+  if (!estaEmTelaCheia() && app.modoFoco) {
+    sairModoFoco();
+  }
 }
 
 function alternarModoFoco() {
@@ -1040,6 +1085,9 @@ function inicializarEventos() {
   elementos.focoPlay.addEventListener("click", alternarPlayPause);
   elementos.focoVoltar.addEventListener("click", voltarPalavras);
   elementos.focoAvancar.addEventListener("click", avancarManualmente);
+
+  document.addEventListener("fullscreenchange", aoMudarTelaCheia);
+  document.addEventListener("webkitfullscreenchange", aoMudarTelaCheia);
 
   elementos.wpm.addEventListener("input", (e) => {
     alterarWpm(Number(e.target.value));
