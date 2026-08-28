@@ -230,9 +230,13 @@
   justify-content: center;
   width: 100%;
   padding: var(--spacing-10) var(--spacing-6);
-  border: 1px solid var(--color-neutral-200);
-  border-radius: 12px;
-  background: var(--color-neutral-50);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .rsvp-leitor__focal-line {
@@ -566,24 +570,49 @@
   white-space: nowrap;
 }
 
-/* Sliders */
+/* Sliders Premium */
 .rsvp-slider {
+  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
-  height: auto;
-  min-height: 0;
-  padding: 0;
-  border: none;
-  background: transparent;
-  box-shadow: none;
-  accent-color: var(--color-brand-600);
+  height: 8px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 99px;
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
   cursor: pointer;
 }
 
-.rsvp-slider:hover,
-.rsvp-slider:focus {
-  border: none;
-  box-shadow: none;
-  outline: none;
+.rsvp-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-brand-500);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25), inset 0 2px 4px rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border: 3px solid white;
+}
+
+.rsvp-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.rsvp-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-brand-500);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25), inset 0 2px 4px rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border: 3px solid white;
+}
+
+.rsvp-slider::-moz-range-thumb:hover {
+  transform: scale(1.15);
 }
 
 /* Botões de tema — cores do próprio tema */
@@ -642,21 +671,23 @@
 
 /* Temas do leitor */
 .rsvp-leitor.rsvp-tema--claro {
-  --rsvp-transicao-overlay: var(--color-neutral-50);
+  --rsvp-transicao-overlay: rgba(255, 255, 255, 0.8);
   --rsvp-transicao-label: var(--color-neutral-600);
   --rsvp-transicao-titulo: var(--color-neutral-900);
   --rsvp-transicao-subtitulo: var(--color-neutral-700);
-  background: var(--color-neutral-50);
-  border-color: var(--color-neutral-200);
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 1);
 }
 
 .rsvp-leitor.rsvp-tema--escuro {
-  --rsvp-transicao-overlay: var(--color-neutral-900);
+  --rsvp-transicao-overlay: rgba(15, 23, 42, 0.8);
   --rsvp-transicao-label: var(--color-neutral-400);
   --rsvp-transicao-titulo: var(--color-white);
   --rsvp-transicao-subtitulo: var(--color-neutral-300);
-  background: var(--color-neutral-900);
-  border-color: var(--color-neutral-700);
+  background: rgba(15, 23, 42, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .rsvp-leitor.rsvp-tema--escuro .rsvp-palavra__antes,
@@ -673,12 +704,13 @@
 }
 
 .rsvp-leitor.rsvp-tema--sepia {
-  --rsvp-transicao-overlay: #f4ecd8;
+  --rsvp-transicao-overlay: rgba(244, 236, 216, 0.8);
   --rsvp-transicao-label: #7a6a55;
   --rsvp-transicao-titulo: #3d2b1f;
   --rsvp-transicao-subtitulo: #5c4a3a;
-  background: #f4ecd8;
-  border-color: #e8dcc4;
+  background: rgba(244, 236, 216, 0.8);
+  border-color: rgba(232, 220, 196, 0.8);
+  box-shadow: 0 8px 32px rgba(122, 106, 85, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
 .rsvp-leitor.rsvp-tema--sepia .rsvp-palavra__antes,
@@ -788,9 +820,47 @@
 
 .rsvp-foco-overlay__sair {
   position: absolute;
-  top: var(--spacing-4);
-  right: var(--spacing-4);
+  top: var(--spacing-6);
+  right: var(--spacing-6);
   z-index: 3;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-size-text-sm);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.rsvp-foco-overlay__sair:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .rsvp-foco-overlay__conteudo {
+    flex-direction: row;
+    padding: var(--spacing-4);
+    gap: var(--spacing-6);
+  }
+  .rsvp-foco-overlay__rodape {
+    width: auto;
+    max-width: 320px;
+    padding-bottom: 0;
+  }
+  .rsvp-foco-overlay__leitor-slot {
+    min-height: 12rem;
+  }
+  .rsvp-foco-overlay__sair {
+    top: var(--spacing-4);
+    right: var(--spacing-4);
+  }
+  .rsvp-foco-overlay__ajustes-slot .rsvp-ajustes-slot {
+    flex-direction: row;
+  }
 }
 
 .rsvp-foco-overlay__leitor-slot {

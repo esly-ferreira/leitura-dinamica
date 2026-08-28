@@ -1,30 +1,17 @@
 /*
   Page layout — cabeçalho e seções padrão das telas MFE.
-
-  Uso na página:
-  <div class="page-header">
-    <div class="page-header__title">
-      <h1 class="text-display-sm font-semibold">…</h1>
-      <p class="text-text-md neutral-600">…</p>
-    </div>
-  </div>
-  <div class="page-body">
-    <div class="page-section">
-      <h2 class="text-display-sm font-semibold">…</h2>
-      <p class="text-text-md neutral-600">…</p>
-    </div>
-    <div class="page-actions">…</div>
-  </div>
-
-  Uso dentro de modal, panel-card ou outro container com padding próprio:
-  <div class="page-body-interior">
-    <div class="page-section-interior">
-      <h2 class="text-display-sm font-semibold">…</h2>
-      <p class="text-text-md neutral-600">…</p>
-    </div>
-    <div class="page-actions-interior">…</div>
-  </div>
 */
+
+body {
+  background: 
+    radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.1), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(147, 51, 234, 0.1), transparent 25%),
+    radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.1), transparent 25%),
+    linear-gradient(135deg, var(--color-slate-50) 0%, var(--color-slate-100) 100%);
+  background-attachment: fixed;
+  color: var(--color-slate-900);
+  min-height: 100vh;
+}
 
 .page-header {
   display: flex;
@@ -32,13 +19,25 @@
   gap: var(--spacing-6);
   padding: var(--spacing-8);
   box-sizing: border-box;
-  border-bottom: 1px solid var(--color-neutral-200);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .page-header__title {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-2);
+}
+
+.page-header__title h1 {
+  background: linear-gradient(135deg, var(--color-brand-600), var(--color-brand-800));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 10px rgba(45, 89, 44, 0.1);
 }
 
 .page-body {
