@@ -271,7 +271,7 @@
 }
 
 .md-button-secondary .material-symbols-rounded {
-  color: var(--color-neutral-500);
+  color: var(--color-neutral-700);
   font-weight: 300;
   line-height: 1;
   transition: color 0.2s cubic-bezier(0.22, 1, 0.36, 1);
