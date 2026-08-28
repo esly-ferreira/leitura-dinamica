@@ -98,6 +98,55 @@
   cursor: pointer;
 }
 
+/* Sliders Premium */
+.rsvp-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 99px;
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.rsvp-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-brand-500);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.25),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border: 3px solid white;
+}
+
+.rsvp-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.rsvp-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-brand-500);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.25),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border: 3px solid white;
+}
+
+.rsvp-slider::-moz-range-thumb:hover {
+  transform: scale(1.15);
+}
+
 .rsvp-partes__ordem {
   display: flex;
   align-items: center;
@@ -279,7 +328,11 @@
   align-items: center;
   justify-content: center;
   border-radius: inherit;
-  background: color-mix(in srgb, var(--rsvp-transicao-overlay, var(--color-neutral-50)) 90%, transparent);
+  background: color-mix(
+    in srgb,
+    var(--rsvp-transicao-overlay, var(--color-neutral-50)) 90%,
+    transparent
+  );
   backdrop-filter: blur(8px);
   opacity: 0;
   pointer-events: none;
@@ -579,7 +632,7 @@
   background: rgba(0, 0, 0, 0.1);
   border-radius: 99px;
   outline: none;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 
@@ -590,7 +643,9 @@
   height: 24px;
   border-radius: 50%;
   background: var(--color-brand-500);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.25), inset 0 2px 4px rgba(255,255,255,0.4);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.25),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
   cursor: pointer;
   transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
   border: 3px solid white;
@@ -605,7 +660,9 @@
   height: 24px;
   border-radius: 50%;
   background: var(--color-brand-500);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.25), inset 0 2px 4px rgba(255,255,255,0.4);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.25),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
   cursor: pointer;
   transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
   border: 3px solid white;
@@ -656,7 +713,11 @@
 
 .rsvp-btn-voltar.md-button-mini {
   border-color: var(--color-neutral-400);
-  background: linear-gradient(180deg, var(--color-white) 0%, var(--color-neutral-100) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--color-white) 0%,
+    var(--color-neutral-100) 100%
+  );
   color: var(--color-neutral-700);
 }
 
@@ -677,7 +738,9 @@
   --rsvp-transicao-subtitulo: var(--color-neutral-700);
   background: rgba(255, 255, 255, 0.6);
   border-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 1);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.05),
+    inset 0 0 0 1px rgba(255, 255, 255, 1);
 }
 
 .rsvp-leitor.rsvp-tema--escuro {
@@ -687,7 +750,9 @@
   --rsvp-transicao-subtitulo: var(--color-neutral-300);
   background: rgba(15, 23, 42, 0.8);
   border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .rsvp-leitor.rsvp-tema--escuro .rsvp-palavra__antes,
@@ -710,7 +775,9 @@
   --rsvp-transicao-subtitulo: #5c4a3a;
   background: rgba(244, 236, 216, 0.8);
   border-color: rgba(232, 220, 196, 0.8);
-  box-shadow: 0 8px 32px rgba(122, 106, 85, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 8px 32px rgba(122, 106, 85, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
 .rsvp-leitor.rsvp-tema--sepia .rsvp-palavra__antes,
@@ -838,7 +905,9 @@
   padding: var(--spacing-2) var(--spacing-4);
   font-size: var(--font-size-text-sm);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: background 0.2s, transform 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.2s;
 }
 
 .rsvp-foco-overlay__sair:hover {
@@ -975,7 +1044,7 @@ body.rsvp-modo-foco {
   background: #000;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 900px) and (orientation: portrait) {
   .rsvp-foco-overlay__conteudo {
     padding-top: max(var(--spacing-4), env(safe-area-inset-top));
     padding-right: max(var(--spacing-4), env(safe-area-inset-right));
@@ -990,7 +1059,8 @@ body.rsvp-modo-foco {
 
   .rsvp-foco-overlay__leitor-slot .rsvp-leitor {
     border-radius: 0;
-    min-height: 14rem;
+    min-height: 10rem;
+    border: none;
     box-shadow: none;
   }
 }
@@ -999,7 +1069,10 @@ body.rsvp-modo-foco {
 @media (max-width: 900px) and (orientation: landscape) {
   .rsvp-foco-overlay__conteudo {
     grid-template-areas: "esquerda leitor direita";
-    grid-template-columns: minmax(5.5rem, 7.5rem) minmax(0, 1fr) minmax(9rem, 13rem);
+    grid-template-columns: minmax(5.5rem, 7.5rem) minmax(0, 1fr) minmax(
+        9rem,
+        13rem
+      );
     grid-template-rows: 1fr;
     align-items: stretch;
     justify-items: stretch;
@@ -1036,7 +1109,8 @@ body.rsvp-modo-foco {
   .rsvp-foco-overlay__leitor-slot .rsvp-leitor {
     height: 100%;
     min-height: 0;
-    border-radius: 12px;
+    border-radius: 20px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
   }
 
   .rsvp-foco-overlay__temas-slot .rsvp-temas-bar {
@@ -1062,23 +1136,20 @@ body.rsvp-modo-foco {
   .rsvp-foco-overlay__controles {
     flex-direction: column;
     flex-wrap: nowrap;
-    align-items: stretch;
+    align-items: center;
+    gap: var(--spacing-4);
   }
 
   .rsvp-foco-overlay__controles .md-button,
   .rsvp-foco-overlay__controles .md-button-secondary {
     width: 100%;
     justify-content: center;
+    min-height: 2.75rem;
+    padding-inline: 0;
   }
 
   .rsvp-foco-overlay__btn-texto {
     display: none;
-  }
-
-  .rsvp-foco-overlay__controles .md-button,
-  .rsvp-foco-overlay__controles .md-button-secondary {
-    min-height: 2.75rem;
-    padding-inline: var(--spacing-3);
   }
 
   .rsvp-foco-overlay__ajustes-slot .rsvp-ajustes-slot {

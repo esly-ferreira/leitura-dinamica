@@ -314,6 +314,68 @@
   color: var(--color-neutral-400);
 }
 
+/* Mobile Icon-only Buttons */
+@media (max-width: 640px) {
+  .md-button:has(.material-symbols-rounded),
+  .md-button-mini:has(.material-symbols-rounded),
+  .md-button-mini-danger:has(.material-symbols-rounded),
+  .md-button-mini-warning:has(.material-symbols-rounded),
+  .md-button-danger:has(.material-symbols-rounded),
+  .md-button-warning:has(.material-symbols-rounded),
+  .md-button-secondary:has(.material-symbols-rounded) {
+    font-size: 0 !important;
+    gap: 0;
+    padding: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    aspect-ratio: 1;
+  }
+
+  .md-button:has(.material-symbols-rounded) .material-symbols-rounded,
+  .md-button-mini:has(.material-symbols-rounded) .material-symbols-rounded,
+  .md-button-mini-danger:has(.material-symbols-rounded) .material-symbols-rounded,
+  .md-button-mini-warning:has(.material-symbols-rounded) .material-symbols-rounded,
+  .md-button-danger:has(.material-symbols-rounded) .material-symbols-rounded,
+  .md-button-warning:has(.material-symbols-rounded) .material-symbols-rounded,
+  .md-button-secondary:has(.material-symbols-rounded) .material-symbols-rounded {
+    font-size: 1.25rem !important;
+    margin: auto;
+  }
+}
+
+/* Mobile Icon-only Buttons */
+@media (max-width: 640px), (max-width: 900px) and (orientation: landscape) {
+  .md-button:has(.material-symbols-rounded),
+  .md-button-mini:has(.material-symbols-rounded),
+  .md-button-mini-danger:has(.material-symbols-rounded),
+  .md-button-mini-warning:has(.material-symbols-rounded),
+  .md-button-danger:has(.material-symbols-rounded),
+  .md-button-warning:has(.material-symbols-rounded),
+  .md-button-secondary:has(.material-symbols-rounded) {
+    font-size: 0 !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    min-height: 3rem !important;
+    max-height: 3rem !important;
+    border-radius: 50% !important;
+    aspect-ratio: 1 !important;
+  }
+
+  .md-button:has(.material-symbols-rounded) .material-symbols-rounded,
+  .md-button-mini:has(.material-symbols-rounded) .material-symbols-rounded,
+  .md-button-mini-danger:has(.material-symbols-rounded) .material-symbols-rounded,
+  .md-button-mini-warning:has(.material-symbols-rounded) .material-symbols-rounded,
+  .md-button-danger:has(.material-symbols-rounded) .material-symbols-rounded,
+  .md-button-warning:has(.material-symbols-rounded) .material-symbols-rounded,
+  .md-button-secondary:has(.material-symbols-rounded) .material-symbols-rounded {
+    font-size: 1.5rem !important;
+    margin: auto;
+  }
+}
+
 /*
   Toggle switch — off / on com animação.
   Uso (checkbox):

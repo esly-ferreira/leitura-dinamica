@@ -72,4 +72,20 @@
   .panel-card__grid {
     grid-template-columns: 1fr;
   }
+  .panel-card__header,
+  .panel-card__body,
+  .panel-card__footer {
+    padding-left: var(--spacing-4);
+    padding-right: var(--spacing-4);
+  }
+  .panel-card__header {
+    padding-top: var(--spacing-4);
+  }
+  .panel-card__body {
+    padding-top: var(--spacing-4);
+    padding-bottom: var(--spacing-4);
+  }
+  .panel-card__footer {
+    padding-bottom: var(--spacing-4);
+  }
 }

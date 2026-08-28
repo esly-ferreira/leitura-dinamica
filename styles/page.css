@@ -88,3 +88,15 @@ body {
   padding: 0 0 var(--spacing-6);
   box-sizing: border-box;
 }
+
+@media (max-width: 640px) {
+  .page-header {
+    padding: var(--spacing-5) var(--spacing-4);
+  }
+  .page-section {
+    padding: 0 var(--spacing-4) var(--spacing-4) var(--spacing-4);
+  }
+  .page-actions {
+    padding: 0 var(--spacing-4) var(--spacing-6) var(--spacing-4);
+  }
+}
