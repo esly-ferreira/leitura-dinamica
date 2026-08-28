@@ -188,15 +188,17 @@
   width: 1.75rem;
   height: 1.75rem;
   padding: 0;
-  border: 1px solid var(--color-neutral-200);
+  border: 1px solid transparent;
   border-radius: 6px;
-  background: var(--color-white);
-  color: var(--color-neutral-600);
+  background: transparent;
+  color: var(--color-neutral-500);
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .rsvp-partes__btn:hover:not(:disabled) {
   background: var(--color-neutral-100);
+  color: var(--color-neutral-800);
 }
 
 .rsvp-partes__btn:disabled {
@@ -210,6 +212,11 @@
 
 .rsvp-partes__btn--danger {
   color: var(--color-red-600);
+}
+
+.rsvp-partes__btn--danger:hover:not(:disabled) {
+  color: var(--color-red-700);
+  background: var(--color-red-50);
 }
 
 .rsvp-partes__vazio {

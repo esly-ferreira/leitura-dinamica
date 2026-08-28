@@ -36,17 +36,17 @@
   --color-white: #ffffff;
   --color-black: #000000;
 
-  --color-brand-50: #dfe2df;
-  --color-brand-100: #bfcabe;
-  --color-brand-200: #95af95;
-  --color-brand-300: #729571;
-  --color-brand-400: #517750;
-  --color-brand-500: #3c693b;
-  --color-brand-600: #2d592c;
-  --color-brand-700: #214720;
-  --color-brand-800: #1a3c19;
-  --color-brand-900: #102e10;
-  --color-brand-950: #081b08;
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
+  --color-brand-950: #1e1b4b;
 
   --color-red-50: #fef2f2;
   --color-red-100: #fee2e2;
@@ -265,4 +265,52 @@
     var(--color-brand-900),
     var(--color-brand-600)
   );
+
+  --glass-bg: var(--color-white);
+  --glass-bg-card: var(--color-white);
+  --glass-border: var(--color-neutral-200);
+  --glass-border-card: var(--color-neutral-200);
+  --glass-shadow-inset: transparent;
+  
+  --btn-secondary-highlight: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="dark"] {
+  --color-white: #000000;
+  --color-black: #ffffff;
+
+  --color-brand-50: #1e1b4b;
+  --color-brand-100: #312e81;
+
+  --color-slate-50: #0a0a0a;
+  --color-slate-100: #171717;
+  --color-slate-200: #262626;
+  --color-slate-300: #404040;
+  --color-slate-400: #525252;
+  --color-slate-500: #737373;
+  --color-slate-600: #a3a3a3;
+  --color-slate-700: #d4d4d4;
+  --color-slate-800: #e5e5e5;
+  --color-slate-900: #f5f5f5;
+  --color-slate-950: #fafafa;
+
+  --color-neutral-50: #0a0a0a;
+  --color-neutral-100: #171717;
+  --color-neutral-200: #262626;
+  --color-neutral-300: #404040;
+  --color-neutral-400: #525252;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #a3a3a3;
+  --color-neutral-700: #d4d4d4;
+  --color-neutral-800: #e5e5e5;
+  --color-neutral-900: #f5f5f5;
+  --color-neutral-950: #fafafa;
+
+  --glass-bg: #111111;
+  --glass-bg-card: #111111;
+  --glass-border: #262626;
+  --glass-border-card: #262626;
+  --glass-shadow-inset: transparent;
+
+  --btn-secondary-highlight: rgba(255, 255, 255, 0.05);
 }

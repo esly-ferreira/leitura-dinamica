@@ -3,26 +3,22 @@
 */
 
 body {
-  background: 
-    radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.1), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(147, 51, 234, 0.1), transparent 25%),
-    radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.1), transparent 25%),
-    linear-gradient(135deg, var(--color-slate-50) 0%, var(--color-slate-100) 100%);
-  background-attachment: fixed;
+  background-color: var(--color-slate-50);
   color: var(--color-slate-900);
   min-height: 100vh;
 }
 
 .page-header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
   gap: var(--spacing-6);
   padding: var(--spacing-8);
   box-sizing: border-box;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--glass-border);
+  background: var(--glass-bg);
 }
 
 .page-header__title {
