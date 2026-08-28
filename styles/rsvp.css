@@ -732,24 +732,25 @@
 
 /* Temas do leitor */
 .rsvp-leitor.rsvp-tema--claro {
-  --rsvp-transicao-overlay: rgba(255, 255, 255, 0.8);
+  --rsvp-transicao-overlay: rgba(255, 255, 255, 1);
   --rsvp-transicao-label: var(--color-neutral-600);
   --rsvp-transicao-titulo: var(--color-neutral-900);
   --rsvp-transicao-subtitulo: var(--color-neutral-700);
-  background: rgba(255, 255, 255, 0.6);
-  border-color: rgba(255, 255, 255, 0.8);
+  background: var(--color-white);
+  border-color: var(--color-neutral-200);
+
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.05),
     inset 0 0 0 1px rgba(255, 255, 255, 1);
 }
 
 .rsvp-leitor.rsvp-tema--escuro {
-  --rsvp-transicao-overlay: rgba(15, 23, 42, 0.8);
+  --rsvp-transicao-overlay: rgba(15, 23, 42, 1);
   --rsvp-transicao-label: var(--color-neutral-400);
   --rsvp-transicao-titulo: var(--color-white);
   --rsvp-transicao-subtitulo: var(--color-neutral-300);
-  background: rgba(15, 23, 42, 0.8);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: #0f172a;
+  border-color: var(--color-neutral-700);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.3),
     inset 0 0 0 1px rgba(255, 255, 255, 0.05);
@@ -769,12 +770,12 @@
 }
 
 .rsvp-leitor.rsvp-tema--sepia {
-  --rsvp-transicao-overlay: rgba(244, 236, 216, 0.8);
+  --rsvp-transicao-overlay: rgba(244, 236, 216, 1);
   --rsvp-transicao-label: #7a6a55;
   --rsvp-transicao-titulo: #3d2b1f;
   --rsvp-transicao-subtitulo: #5c4a3a;
-  background: rgba(244, 236, 216, 0.8);
-  border-color: rgba(232, 220, 196, 0.8);
+  background: #f4ecd8;
+  border-color: #e8dcc4;
   box-shadow:
     0 8px 32px rgba(122, 106, 85, 0.1),
     inset 0 0 0 1px rgba(255, 255, 255, 0.5);
@@ -1034,6 +1035,7 @@
 
 body.rsvp-modo-foco {
   overflow: hidden;
+  background-color: #000;
 }
 
 /* Tela cheia nativa (Fullscreen API) — some com as barras do navegador no celular */
@@ -1068,11 +1070,8 @@ body.rsvp-modo-foco {
 /* Celular deitado no modo foco: controles nas laterais, leitura no centro */
 @media (max-width: 900px) and (orientation: landscape) {
   .rsvp-foco-overlay__conteudo {
-    grid-template-areas: "esquerda leitor direita";
-    grid-template-columns: minmax(5.5rem, 7.5rem) minmax(0, 1fr) minmax(
-        9rem,
-        13rem
-      );
+    grid-template-areas: "leitor direita";
+    grid-template-columns: minmax(0, 1fr) minmax(13rem, 16rem);
     grid-template-rows: 1fr;
     align-items: stretch;
     justify-items: stretch;
@@ -1123,29 +1122,37 @@ body.rsvp-modo-foco {
   }
 
   .rsvp-foco-overlay__temas-slot .rsvp-temas {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-2);
   }
 
   .rsvp-foco-overlay__temas-slot .rsvp-tema-btn {
-    width: 100%;
+    width: calc(50% - 0.25rem);
     justify-content: center;
   }
 
   .rsvp-foco-overlay__controles {
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
+    justify-content: flex-start;
+    width: 100%;
     gap: var(--spacing-4);
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: var(--spacing-2);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .rsvp-foco-overlay__controles::-webkit-scrollbar {
+    display: none;
   }
 
   .rsvp-foco-overlay__controles .md-button,
   .rsvp-foco-overlay__controles .md-button-secondary {
-    width: 100%;
-    justify-content: center;
-    min-height: 2.75rem;
-    padding-inline: 0;
+    flex-shrink: 0;
   }
 
   .rsvp-foco-overlay__btn-texto {
